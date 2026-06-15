@@ -24,7 +24,7 @@ function emptySelection(brandDefault = []) {
   return s
 }
 
-const selected = ref({ Brand: ['Apple'] })
+const selected = ref({ Brand: [] })
 const sortBy = ref('By rating')
 const sortOpen = ref(false)
 const page = ref(1)

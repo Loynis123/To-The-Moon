@@ -77,11 +77,11 @@ const related = computed(() => {
 // Spec chips are built from the product's real fields (empty ones are skipped),
 // so every product shows its own characteristics instead of a fixed sheet.
 const SPEC_DEFS = [
-  { key: 'diagonal', label: 'Screen size', icon: '/icons/spec-screen.png' },
-  { key: 'screen', label: 'Screen type', icon: '/icons/spec-cpu.png' },
-  { key: 'memory', label: 'Built-in memory', icon: '/icons/spec-cores.png' },
-  { key: 'battery', label: 'Battery capacity', icon: '/icons/spec-battery.png' },
-  { key: 'protection', label: 'Protection', icon: '/icons/info-guarantee.png' },
+  { key: 'battery', label: 'Connectivity', icon: '/icons/spec-battery.png' },
+  { key: 'screen', label: 'Surround sound', icon: '/icons/spec-cpu.png' },
+  { key: 'diagonal', label: 'Driver size', icon: '/icons/spec-cores.png' },
+  { key: 'protection', label: 'Platform', icon: '/icons/info-guarantee.png' },
+  { key: 'memory', label: 'Lighting', icon: '/icons/spec-screen.png' },
 ]
 const specs = computed(() =>
   SPEC_DEFS.filter((d) => product.value[d.key]).map((d) => ({
@@ -103,22 +103,22 @@ const detailsTable = computed(() => {
   const add = (label, val) => val && rows.push({ label, value: [val] })
   add('Brand', p.brand)
   add('Category', p.category)
-  add('Screen diagonal', p.diagonal)
-  add('Screen type', p.screen)
-  add('Built-in memory', p.memory)
-  add('Battery capacity', p.battery)
-  add('Protection class', p.protection)
+  add('Connectivity', p.battery)
+  add('Surround sound', p.screen)
+  add('Driver size', p.diagonal)
+  add('Platform', p.protection)
+  add('Lighting', p.memory)
   return rows
 })
 
 const description = computed(() => {
   const p = product.value
   const bits = []
-  if (p.diagonal) bits.push(`a ${p.diagonal} display`)
-  if (p.memory) bits.push(`${p.memory} of storage`)
-  if (p.battery) bits.push(`a ${p.battery} battery`)
+  if (p.battery) bits.push(`${p.battery.toLowerCase()} connectivity`)
+  if (p.screen) bits.push(p.screen.toLowerCase())
+  if (p.diagonal) bits.push(`${p.diagonal} drivers`)
   const feat = bits.length ? `, featuring ${bits.join(', ')}` : ''
-  return `The ${p.name} brings together ${p.brand || 'premium'} design and dependable everyday performance${feat}.`
+  return `The ${p.name} delivers tournament-grade ${p.brand || 'gaming'} audio built for competitive play${feat}.`
 })
 const detailsIntro = computed(
   () =>
