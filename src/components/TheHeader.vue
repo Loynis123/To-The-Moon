@@ -196,6 +196,7 @@ watch(mobileOpen, (open) => {
   border-radius: 8px;
 }
 .search-icon {
+  filter: invert(1);
   width: 18px;
   height: 18px;
   opacity: 0.6;
@@ -231,6 +232,7 @@ watch(mobileOpen, (open) => {
   display: inline-flex;
 }
 .icon-btn img {
+  filter: invert(1);
   width: 24px;
   height: 24px;
   transition: opacity 0.15s ease;
@@ -303,7 +305,7 @@ watch(mobileOpen, (open) => {
   padding: 0 4px;
   border-radius: 9px;
   background: var(--black);
-  color: var(--white);
+  color: var(--accent-ink);
   font-size: 11px;
   font-weight: 600;
   line-height: 17px;
@@ -407,7 +409,7 @@ watch(mobileOpen, (open) => {
   padding: 0 6px;
   border-radius: 10px;
   background: var(--black);
-  color: var(--white);
+  color: var(--accent-ink);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

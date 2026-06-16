@@ -253,7 +253,7 @@ function checkout() {
   height: 54px;
   margin-top: 24px;
   background: var(--black);
-  color: var(--white);
+  color: var(--accent-ink);
   border-radius: 8px;
   font-size: 15px;
   font-style: italic;

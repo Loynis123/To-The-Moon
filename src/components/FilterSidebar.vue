@@ -137,6 +137,7 @@ function toggle(group, option) {
   margin-bottom: 16px;
 }
 .brand-search img {
+  filter: invert(1);
   width: 16px;
   height: 16px;
   opacity: 0.55;
@@ -183,8 +184,8 @@ function toggle(group, option) {
   top: 1px;
   width: 5px;
   height: 10px;
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  border-right: 2px solid var(--accent-ink);
+  border-bottom: 2px solid var(--accent-ink);
   transform: rotate(45deg);
 }
 .opt-name {

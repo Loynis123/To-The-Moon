@@ -378,11 +378,11 @@ onUnmounted(() => document.removeEventListener('click', closeSort))
   transition: background 0.15s ease;
 }
 .pg:hover {
-  background: #ededed;
+  background: var(--surface-2);
 }
 .pg.active {
   background: var(--black);
-  color: #fff;
+  color: var(--accent-ink);
 }
 .pg.arrow {
   background: transparent;

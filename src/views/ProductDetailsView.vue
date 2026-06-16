@@ -463,6 +463,7 @@ function addToCart() {
   padding: 14px;
 }
 .spec-icon {
+  filter: invert(1);
   width: 26px;
   height: 26px;
   opacity: 0.55;
@@ -529,6 +530,7 @@ function addToCart() {
   border-radius: 10px;
 }
 .g-icon img {
+  filter: invert(1);
   width: 22px;
   height: 22px;
   opacity: 0.7;
@@ -559,7 +561,7 @@ function addToCart() {
   font-style: italic;
 }
 .details {
-  background: #fafafa;
+  background: var(--surface);
   border-radius: 14px;
   padding: 46px 50px;
   margin-bottom: 60px;
