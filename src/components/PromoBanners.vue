@@ -1,15 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 
-// Device photos intentionally left as empty space — filled later.
 const desc =
-  'iPad combines a magnificent 10.2-inch Retina display, incredible performance, multitasking and ease of use.'
+  'Tournament-tuned drivers, low-latency wireless and all-day comfort — gear built to win.'
 
 const banners = [
-  { title: 'Popular Products', theme: 'light', image: '/imgs/airpods-card.png' },
-  { title: 'Ipad Pro', theme: 'gray', image: '/imgs/ipad.png' },
-  { title: 'Samsung Galaxy', theme: 'gray', image: '/imgs/galaxy-fold.png' },
-  { title: 'Macbook Pro', theme: 'dark', image: '/imgs/macbook.png' },
+  { title: 'NOVA Pro', theme: 'light', image: '/imgs/headset-nova.jpg' },
+  { title: 'QuadCast S', theme: 'gray', image: '/imgs/mic-quadcast.jpg' },
+  { title: 'Apex Pro', theme: 'gray', image: '/imgs/keeb-apex.jpg' },
+  { title: 'DeathAdder', theme: 'dark', image: '/imgs/mouse-deathadder.jpg' },
 ]
 
 // Mobile carousel state (dots). Desktop renders the grid and ignores this.

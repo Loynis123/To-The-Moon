@@ -11,7 +11,7 @@ const route = useRoute()
 const router = useRouter()
 
 // Fallback product so the page renders even without an id in the URL.
-const FALLBACK = { name: 'Apple iPhone 14 Pro Max', price: 1399, oldPrice: 1499, image: '/imgs/iphone-purple.png', category: 'Phones' }
+const FALLBACK = { name: 'To The Moon NOVA Pro Wireless', price: 179, image: '/imgs/headset-nova.jpg', category: 'Headsets', brand: 'To The Moon' }
 const product = ref(FALLBACK)
 const allProducts = ref([])
 

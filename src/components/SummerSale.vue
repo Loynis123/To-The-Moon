@@ -4,14 +4,14 @@
 
 <template>
   <section class="sale">
-    <img class="float float-ipad" src="/imgs/ipad.png" alt="" />
-    <img class="float float-fold" src="/imgs/galaxy-fold.png" alt="" />
-    <img class="float float-phone" src="/imgs/iphone-purple.png" alt="" />
-    <img class="float float-watch" src="/imgs/watch-apple.png" alt="" />
+    <img class="float float-ipad" src="/imgs/keeb-k70.jpg" alt="" />
+    <img class="float float-fold" src="/imgs/ctrl-xbox.jpg" alt="" />
+    <img class="float float-phone" src="/imgs/mouse-aerox.jpg" alt="" />
+    <img class="float float-watch" src="/imgs/headset-kraken.jpg" alt="" />
     <div class="inner">
-      <h2 class="title">Big Summer <em>Sale</em></h2>
-      <p class="sub">Commodo fames vitae vitae leo mauris in. Eu consequat.</p>
-      <router-link to="/products" class="btn-outline on-dark">Shop Now</router-link>
+      <h2 class="title">Level-Up <em>Sale</em></h2>
+      <p class="sub">Up to 40% off pro-grade gear. Gear up before your next match — to the moon.</p>
+      <router-link to="/products" class="btn-solid">Shop Now</router-link>
     </div>
   </section>
 </template>

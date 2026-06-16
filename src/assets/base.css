@@ -67,6 +67,8 @@ button {
 
 input {
   font-family: inherit;
+  color: var(--ink);
+  background: transparent;
 }
 
 a {
