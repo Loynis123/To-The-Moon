@@ -5,41 +5,36 @@ export const tabs = [
   { key: 'featured', label: 'Featured Products' },
 ]
 
-export const categories = ['Headsets', 'Keyboards', 'Mice', 'Controllers', 'Microphones']
+export const categories = ['Headsets', 'Mice', 'Keyboards', 'Controllers']
 
-// Assigns each product a category (for browse + filters) and section tabs.
-// Specs/brand/price come from productsCatalog (merged by name in the seed).
+// Assigns each product a category (browse + filters) and section tabs.
+// Brand/price/specs come from productsCatalog (merged by name in the seed).
 export const catalog = [
   // Headsets
-  { name: 'To The Moon NOVA Pro Wireless', price: '$179', image: '/imgs/headset-nova.jpg', category: 'Headsets', tabs: ['new', 'featured'], favorite: true },
-  { name: 'Razer Kraken V3 X', price: '$69', image: '/imgs/headset-kraken.jpg', category: 'Headsets', tabs: ['new'] },
-  { name: 'HyperX Cloud III', price: '$99', image: '/imgs/headset-cloud.jpg', category: 'Headsets', tabs: ['new', 'best'] },
-  { name: 'SteelSeries Arctis Nova 7', price: '$149', image: '/imgs/headset-arctis.jpg', category: 'Headsets', tabs: ['new'] },
-  { name: 'Logitech G PRO X 2 Lightspeed', price: '$129', image: '/imgs/headset-gprox.jpg', category: 'Headsets', tabs: ['new', 'best'] },
-  { name: 'Corsair Virtuoso RGB Wireless', price: '$179', image: '/imgs/headset-virtuoso.jpg', category: 'Headsets', tabs: ['best', 'featured'] },
-
-  // Keyboards
-  { name: 'Razer Huntsman V2 Optical', price: '$149', image: '/imgs/keeb-huntsman.jpg', category: 'Keyboards', tabs: ['new', 'featured'] },
-  { name: 'Corsair K70 RGB PRO', price: '$169', image: '/imgs/keeb-k70.jpg', category: 'Keyboards', tabs: ['featured'] },
-  { name: 'SteelSeries Apex Pro TKL', price: '$189', image: '/imgs/keeb-apex.jpg', category: 'Keyboards', tabs: ['best', 'featured'] },
+  { name: 'HyperX Cloud III', price: '$100', image: '/imgs/hyperx-cloud-3.webp', category: 'Headsets', tabs: ['new', 'featured'], favorite: true },
+  { name: 'HyperX Cloud Stinger 2', price: '$50', image: '/imgs/hyperx-cloud-stinger-2.webp', category: 'Headsets', tabs: ['new'] },
+  { name: 'SteelSeries Arctis Nova 1', price: '$60', image: '/imgs/steelseries-arctis-nova-1.png', category: 'Headsets', tabs: ['new', 'best'] },
+  { name: 'Logitech G435 LIGHTSPEED', price: '$80', image: '/imgs/logitech-g435.webp', category: 'Headsets', tabs: ['best', 'featured'] },
 
   // Mice
-  { name: 'Logitech G502 X PLUS', price: '$159', image: '/imgs/mouse-g502.jpg', category: 'Mice', tabs: ['new', 'best'] },
-  { name: 'Razer DeathAdder V3', price: '$69', image: '/imgs/mouse-deathadder.jpg', category: 'Mice', tabs: ['best'] },
-  { name: 'SteelSeries Aerox 5 Wireless', price: '$139', image: '/imgs/mouse-aerox.jpg', category: 'Mice', tabs: ['featured'] },
+  { name: 'Logitech G203 LIGHTSYNC', price: '$30', image: '/imgs/logitech-g203.jpg', category: 'Mice', tabs: ['new', 'best'] },
+  { name: 'Logitech G502 X', price: '$80', image: '/imgs/logitech-g502.jpg', category: 'Mice', tabs: ['new', 'featured'] },
+  { name: 'Razer DeathAdder Essential', price: '$30', image: '/imgs/razer-deathadder-essential.jpg', category: 'Mice', tabs: ['new'] },
+  { name: 'Glorious Model O', price: '$50', image: '/imgs/glorious-model-o.jpg', category: 'Mice', tabs: ['best', 'featured'] },
+  { name: 'A4Tech Bloody V8', price: '$20', image: '/imgs/a4tech-bloody-v8.png', category: 'Mice', tabs: ['new'] },
+
+  // Keyboards
+  { name: 'Razer Huntsman V2 TKL', price: '$130', image: '/imgs/razer-huntsman-v2-tkl.png', category: 'Keyboards', tabs: ['new', 'featured'] },
+  { name: 'Logitech G213 Prodigy', price: '$50', image: '/imgs/logitech-g213.png', category: 'Keyboards', tabs: ['best'] },
+  { name: 'Redragon Kumara K552', price: '$40', image: '/imgs/redragon-kumara-k552.webp', category: 'Keyboards', tabs: ['new', 'best'] },
 
   // Controllers
-  { name: 'Xbox Elite Wireless Controller Series 2', price: '$179', image: '/imgs/ctrl-elite.jpg', category: 'Controllers', tabs: ['best', 'featured'] },
-  { name: 'Xbox Wireless Controller Carbon Black', price: '$59', image: '/imgs/ctrl-xbox.jpg', category: 'Controllers', tabs: ['new'] },
-
-  // Microphones
-  { name: 'HyperX QuadCast S RGB', price: '$159', image: '/imgs/mic-quadcast.jpg', category: 'Microphones', tabs: ['new', 'featured'] },
-  { name: 'Elgato Wave:3', price: '$149', image: '/imgs/mic-wave.jpg', category: 'Microphones', tabs: ['best'] },
+  { name: 'Xbox Wireless Controller', price: '$60', image: '/imgs/xbox-controller.jpg', category: 'Controllers', tabs: ['best', 'featured'] },
 ]
 
 export const discounts = [
-  { name: 'To The Moon NOVA Pro Wireless', price: '$179', image: '/imgs/headset-nova.jpg' },
-  { name: 'Razer Kraken V3 X', price: '$69', image: '/imgs/headset-kraken.jpg' },
-  { name: 'Razer DeathAdder V3', price: '$69', image: '/imgs/mouse-deathadder.jpg' },
-  { name: 'Xbox Wireless Controller Carbon Black', price: '$59', image: '/imgs/ctrl-xbox.jpg' },
+  { name: 'Logitech G502 X', price: '$80', image: '/imgs/logitech-g502.jpg' },
+  { name: 'Razer DeathAdder Essential', price: '$30', image: '/imgs/razer-deathadder-essential.jpg' },
+  { name: 'A4Tech Bloody V8', price: '$20', image: '/imgs/a4tech-bloody-v8.png' },
+  { name: 'Redragon Kumara K552', price: '$40', image: '/imgs/redragon-kumara-k552.webp' },
 ]

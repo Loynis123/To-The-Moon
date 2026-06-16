@@ -11,7 +11,7 @@ const route = useRoute()
 const router = useRouter()
 
 // Fallback product so the page renders even without an id in the URL.
-const FALLBACK = { name: 'To The Moon NOVA Pro Wireless', price: 179, image: '/imgs/headset-nova.jpg', category: 'Headsets', brand: 'To The Moon' }
+const FALLBACK = { name: 'HyperX Cloud III', price: 100, image: '/imgs/hyperx-cloud-3.webp', category: 'Headsets', brand: 'HyperX' }
 const product = ref(FALLBACK)
 const allProducts = ref([])
 
@@ -326,35 +326,42 @@ function addToCart() {
   gap: 16px;
 }
 .thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 80px;
   height: 80px;
   border-radius: 10px;
-  background: var(--card);
+  background: #fff;
   overflow: hidden;
+  padding: 8px;
   outline: 2px solid transparent;
   outline-offset: -2px;
   transition: outline 0.15s ease;
 }
 .thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 .thumb.active {
   outline-color: var(--accent);
 }
 .stage {
   flex: 1;
-  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
   border-radius: 14px;
   overflow: hidden;
   min-height: 460px;
+  padding: 40px;
 }
 .stage img {
-  width: 100%;
-  height: 100%;
-  min-height: 460px;
-  object-fit: cover;
+  max-width: 88%;
+  max-height: 420px;
+  object-fit: contain;
 }
 
 .info {

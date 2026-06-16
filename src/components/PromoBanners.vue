@@ -5,10 +5,10 @@ const desc =
   'Tournament-tuned drivers, low-latency wireless and all-day comfort — gear built to win.'
 
 const banners = [
-  { title: 'NOVA Pro', theme: 'light', image: '/imgs/headset-nova.jpg' },
-  { title: 'QuadCast S', theme: 'gray', image: '/imgs/mic-quadcast.jpg' },
-  { title: 'Apex Pro', theme: 'gray', image: '/imgs/keeb-apex.jpg' },
-  { title: 'DeathAdder', theme: 'dark', image: '/imgs/mouse-deathadder.jpg' },
+  { title: 'Cloud III', theme: 'light', image: '/imgs/hyperx-cloud-3.webp' },
+  { title: 'G502 X', theme: 'gray', image: '/imgs/logitech-g502.jpg' },
+  { title: 'Huntsman V2', theme: 'gray', image: '/imgs/razer-huntsman-v2-tkl.png' },
+  { title: 'DeathAdder', theme: 'dark', image: '/imgs/razer-deathadder-essential.jpg' },
 ]
 
 // Mobile carousel state (dots). Desktop renders the grid and ignores this.
@@ -72,17 +72,21 @@ function goTo(i) {
 }
 
 .photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 200px;
   margin-bottom: 22px;
+  padding: 16px;
   border-radius: 10px;
   overflow: hidden;
-  background: var(--surface-2);
+  background: #fff;
 }
 .photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 .title {
   font-size: 28px;

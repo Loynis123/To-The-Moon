@@ -1,13 +1,7 @@
-<script setup>
-// Floating device photos intentionally left as empty space — filled later.
-</script>
+<script setup></script>
 
 <template>
   <section class="sale">
-    <img class="float float-ipad" src="/imgs/keeb-k70.jpg" alt="" />
-    <img class="float float-fold" src="/imgs/ctrl-xbox.jpg" alt="" />
-    <img class="float float-phone" src="/imgs/mouse-aerox.jpg" alt="" />
-    <img class="float float-watch" src="/imgs/headset-kraken.jpg" alt="" />
     <div class="inner">
       <h2 class="title">Level-Up <em>Sale</em></h2>
       <p class="sub">Up to 40% off pro-grade gear. Gear up before your next match — to the moon.</p>
@@ -35,42 +29,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.float {
-  position: absolute;
-  z-index: 1;
-  object-fit: contain;
-  pointer-events: none;
-}
-.float-ipad {
-  left: -70px;
-  bottom: -50px;
-  height: 78%;
-  transform: rotate(-14deg);
-}
-.float-fold {
-  left: 130px;
-  bottom: -70px;
-  height: 52%;
-  transform: rotate(8deg);
-}
-.float-phone {
-  right: 20px;
-  top: 24px;
-  height: 80%;
-  transform: rotate(14deg);
-}
-.float-watch {
-  right: -40px;
-  bottom: 10px;
-  height: 40%;
-  transform: rotate(10deg);
-}
-
-@media (max-width: 860px) {
-  .float {
-    display: none;
-  }
 }
 .title {
   font-size: 56px;

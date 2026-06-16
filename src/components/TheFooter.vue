@@ -59,7 +59,8 @@ const socials = ['twitter', 'facebook', 'tiktok', 'instagram']
 
 <style scoped>
 .footer {
-  background: var(--black);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
   color: var(--white);
   padding: 64px 0 72px;
 }

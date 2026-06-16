@@ -2,13 +2,15 @@
 
 <template>
   <section class="hero">
-    <img class="hero-img" src="/imgs/headset-nova.jpg" alt="NOVA Pro Wireless" />
     <div class="container hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow">NOVA Pro Wireless</p>
+        <p class="eyebrow">HyperX Cloud III</p>
         <h1 class="title">Hear the Game</h1>
-        <p class="sub">Low-latency wireless and spatial audio that put you a step ahead. Gear up — to the moon.</p>
+        <p class="sub">Tournament-grade gaming audio and gear that put you a step ahead. Gear up — to the moon.</p>
         <router-link to="/products" class="btn-solid hero-btn">Shop Now</router-link>
+      </div>
+      <div class="hero-shot">
+        <img src="/imgs/hyperx-cloud-3.webp" alt="HyperX Cloud III" />
       </div>
     </div>
   </section>
@@ -18,86 +20,80 @@
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--hero);
+  background: radial-gradient(80% 120% at 78% 30%, rgba(194, 255, 71, 0.1), transparent 55%), var(--hero);
   color: var(--white);
 }
 .hero-inner {
   display: flex;
   align-items: center;
-  min-height: 632px;
+  gap: 40px;
+  min-height: 560px;
 }
 .hero-copy {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
+  flex: 1;
+  max-width: 560px;
 }
-.hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 70% center;
-  z-index: 0;
-  pointer-events: none;
+.hero-shot {
+  flex: 0 0 42%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 420px;
+  padding: 32px;
+  background: #fff;
+  border-radius: 18px;
 }
-/* Scrim so the copy stays readable over the photo. */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(90deg, rgba(7, 9, 14, 0.94) 0%, rgba(7, 9, 14, 0.7) 38%, rgba(7, 9, 14, 0.15) 70%, rgba(7, 9, 14, 0.45) 100%);
+.hero-shot img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 .eyebrow {
-  font-size: 16px;
-  font-style: italic;
-  color: #8a8a8f;
-  margin-bottom: 12px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
 }
 .title {
-  font-size: 72px;
-  font-weight: 400;
-  line-height: 1.04;
+  font-size: 64px;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.02;
   letter-spacing: -0.01em;
-  white-space: nowrap;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .sub {
   font-size: 16px;
-  font-style: italic;
-  color: #9c9c9f;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 440px;
   margin-bottom: 30px;
-}
-.hero-btn {
-  border-color: rgba(255, 255, 255, 0.85);
 }
 
 @media (max-width: 860px) {
   .hero-inner {
-    min-height: 460px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    min-height: 0;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .hero-shot {
+    flex: none;
+    width: 100%;
+    height: 300px;
   }
   .title {
-    font-size: 48px;
-    white-space: normal;
+    font-size: 46px;
   }
 }
-
 @media (max-width: 600px) {
-  .hero-inner {
-    min-height: 440px;
-    text-align: center;
-    justify-content: center;
-  }
-  .hero-copy {
-    max-width: 100%;
-  }
-  .hero::before {
-    background: rgba(7, 9, 14, 0.72);
-  }
   .title {
-    font-size: 40px;
-    white-space: normal;
+    font-size: 38px;
+  }
+  .hero-shot {
+    height: 240px;
   }
 }
 </style>
