@@ -73,17 +73,17 @@ function addToCart() {
   color: var(--heart);
 }
 .photo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 190px;
-  margin-bottom: 4px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface-2);
 }
 .photo img {
-  max-width: 90%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .name {
   display: block;

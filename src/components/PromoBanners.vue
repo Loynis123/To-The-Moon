@@ -72,17 +72,17 @@ function goTo(i) {
 }
 
 .photo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 200px;
   margin-bottom: 22px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-2);
 }
 .photo img {
-  max-width: 92%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .title {
   font-size: 28px;

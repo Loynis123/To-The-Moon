@@ -33,13 +33,21 @@
 }
 .hero-img {
   position: absolute;
-  right: max(0px, calc((100% - 1180px) / 2));
-  bottom: 0;
-  height: 86%;
-  width: auto;
-  object-fit: contain;
-  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center;
+  z-index: 0;
   pointer-events: none;
+}
+/* Scrim so the copy stays readable over the photo. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(7, 9, 14, 0.94) 0%, rgba(7, 9, 14, 0.7) 38%, rgba(7, 9, 14, 0.15) 70%, rgba(7, 9, 14, 0.45) 100%);
 }
 .eyebrow {
   font-size: 16px;
@@ -76,37 +84,20 @@
 }
 
 @media (max-width: 600px) {
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   .hero-inner {
-    order: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    min-height: 440px;
     text-align: center;
-    min-height: 0;
-    padding-top: 44px;
+    justify-content: center;
   }
   .hero-copy {
     max-width: 100%;
   }
-  .hero-img {
-    position: static;
-    order: 2;
-    height: auto;
-    width: auto;
-    max-width: 86%;
-    max-height: 320px;
-    margin: -16px 0 0;
+  .hero::before {
+    background: rgba(7, 9, 14, 0.72);
   }
   .title {
-    font-size: 38px;
-  }
-  .hero-btn {
-    margin-top: 4px;
+    font-size: 40px;
+    white-space: normal;
   }
 }
 </style>

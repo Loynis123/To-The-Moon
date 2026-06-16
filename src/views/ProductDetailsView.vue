@@ -330,36 +330,31 @@ function addToCart() {
   height: 80px;
   border-radius: 10px;
   background: var(--card);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
+  overflow: hidden;
   outline: 2px solid transparent;
   outline-offset: -2px;
   transition: outline 0.15s ease;
 }
 .thumb img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .thumb.active {
-  outline-color: var(--ink);
+  outline-color: var(--accent);
 }
 .stage {
   flex: 1;
   background: var(--card);
   border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
+  overflow: hidden;
   min-height: 460px;
 }
 .stage img {
-  max-width: 92%;
-  max-height: 430px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
 }
 
 .info {
