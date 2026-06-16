@@ -4,42 +4,42 @@
 
 <template>
   <section class="showcase">
-    <article class="cell ps5">
-      <img class="img img-ps5" src="/imgs/playstation.png" alt="PlayStation 5" />
+    <article class="cell keeb">
+      <img class="img img-keeb" src="/imgs/keeb-apex.jpg" alt="SteelSeries Apex Pro TKL" />
       <div class="body">
-        <h3 class="title-lg">Playstation 5</h3>
+        <h3 class="title-lg">Apex Pro TKL</h3>
         <p class="desc">
-          Incredibly powerful CPUs, GPUs, and an SSD with integrated I/O will redefine your
-          PlayStation experience.
+          Adjustable OmniPoint switches and an aluminium frame — actuate exactly how you want, key by
+          key.
         </p>
       </div>
     </article>
 
-    <article class="cell macbook">
-      <img class="img img-mac" src="/imgs/macbook.png" alt="MacBook Air" />
+    <article class="cell headset">
+      <img class="img img-headset" src="/imgs/headset-nova.jpg" alt="NOVA Pro Wireless" />
       <div class="body">
-        <h3 class="title-lg">Macbook <em>Air</em></h3>
+        <h3 class="title-lg">NOVA <em>Pro</em></h3>
         <p class="desc">
-          The new 15-inch MacBook Air makes room for more of what you love with a spacious Liquid
-          Retina display.
+          Dual-wireless, hot-swap batteries and spatial audio. Our flagship headset, tuned for the
+          podium.
         </p>
-        <router-link to="/products" class="btn-outline mac-btn">Shop Now</router-link>
+        <router-link to="/products" class="btn-solid cta-btn">Shop Now</router-link>
       </div>
     </article>
 
-    <article class="cell airpods">
-      <img class="img img-air" src="/imgs/airpods-max.webp" alt="Apple AirPods Max" />
+    <article class="cell mouse">
+      <img class="img img-mouse" src="/imgs/mouse-deathadder.jpg" alt="Razer DeathAdder V3" />
       <div class="body">
-        <h3 class="title-md">Apple<br />AirPods<br />Max</h3>
-        <p class="desc">Computational audio. Listen, it's powerful</p>
+        <h3 class="title-md">DeathAdder<br />V3</h3>
+        <p class="desc">59 g, Focus Pro 30K sensor — pure aim.</p>
       </div>
     </article>
 
-    <article class="cell vision">
-      <img class="img img-vis" src="/imgs/vision-pro.png" alt="Apple Vision Pro" />
+    <article class="cell mic">
+      <img class="img img-mic" src="/imgs/mic-quadcast.jpg" alt="HyperX QuadCast S" />
       <div class="body">
-        <h3 class="title-md">Apple<br />Vision Pro</h3>
-        <p class="desc">An immersive way to experience entertainment</p>
+        <h3 class="title-md">QuadCast S</h3>
+        <p class="desc">Studio-grade voice with tap-to-mute and RGB.</p>
       </div>
     </article>
   </section>
@@ -51,8 +51,8 @@
   grid-template-columns: 370fr 393fr 677fr;
   grid-template-rows: 321px 321px;
   grid-template-areas:
-    'ps5 ps5 macbook'
-    'airpods vision macbook';
+    'keeb keeb headset'
+    'mouse mic headset';
 }
 
 .cell {
@@ -71,28 +71,28 @@
   object-fit: contain;
   pointer-events: none;
 }
-.img-ps5 {
+.img-keeb {
   left: 8px;
   top: 50%;
   transform: translateY(-50%);
   height: 88%;
   max-width: 300px;
 }
-.img-mac {
+.img-headset {
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
   height: 82%;
   max-width: 360px;
 }
-.img-air {
+.img-mouse {
   left: 6px;
   top: 50%;
   transform: translateY(-50%);
   height: 98%;
   max-width: 190px;
 }
-.img-vis {
+.img-mic {
   left: 8px;
   top: 50%;
   transform: translateY(-50%);
@@ -100,40 +100,40 @@
   max-width: 210px;
 }
 
-.ps5 {
-  grid-area: ps5;
+.keeb {
+  grid-area: keeb;
   background: var(--surface);
 }
-.ps5 .body {
+.keeb .body {
   padding-left: 330px;
   padding-right: 40px;
   max-width: 640px;
 }
 
-.macbook {
-  grid-area: macbook;
+.headset {
+  grid-area: headset;
   background: var(--panel);
 }
-.macbook .body {
+.headset .body {
   padding-left: 48px;
   max-width: 250px;
 }
 
-.airpods {
-  grid-area: airpods;
+.mouse {
+  grid-area: mouse;
   background: var(--panel);
 }
-.airpods .body {
+.mouse .body {
   padding-left: 210px;
   padding-right: 20px;
 }
 
-.vision {
-  grid-area: vision;
+.mic {
+  grid-area: mic;
   background: var(--dark-cell);
   color: var(--white);
 }
-.vision .body {
+.mic .body {
   padding-left: 230px;
   padding-right: 20px;
 }
@@ -149,10 +149,10 @@
 .title-lg em {
   font-style: italic;
 }
-.macbook .title-lg {
+.headset .title-lg {
   font-style: normal;
 }
-.macbook .title-lg em {
+.headset .title-lg em {
   font-style: italic;
 }
 
@@ -170,11 +170,11 @@
   color: var(--muted);
   max-width: 300px;
 }
-.vision .desc {
+.mic .desc {
   color: #b9b9b9;
 }
 
-.mac-btn {
+.cta-btn {
   margin-top: 22px;
 }
 
@@ -183,18 +183,18 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas:
-      'ps5 ps5'
-      'macbook macbook'
-      'airpods vision';
+      'keeb keeb'
+      'headset headset'
+      'mouse mic';
   }
   .cell {
     min-height: 280px;
   }
-  .ps5 .body {
+  .keeb .body {
     padding-left: 40px;
   }
-  .airpods .body,
-  .vision .body {
+  .mouse .body,
+  .mic .body {
     padding-left: 40px;
   }
 }
@@ -204,10 +204,10 @@
   .showcase {
     grid-template-columns: 1fr;
     grid-template-areas:
-      'airpods'
-      'vision'
-      'ps5'
-      'macbook';
+      'mouse'
+      'mic'
+      'keeb'
+      'headset';
   }
   .cell {
     flex-direction: column;
@@ -241,7 +241,7 @@
   .title-md {
     font-size: 24px;
   }
-  .mac-btn {
+  .cta-btn {
     width: 100%;
     margin-top: 26px;
   }

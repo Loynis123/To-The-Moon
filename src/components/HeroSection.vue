@@ -1,16 +1,14 @@
-<script setup>
-// Image (iPhone) intentionally left as empty space — to be filled later.
-</script>
+<script setup></script>
 
 <template>
   <section class="hero">
-    <img class="hero-img" src="/imgs/iphone-hero.png" alt="iPhone 14 Pro" />
+    <img class="hero-img" src="/imgs/headset-nova.jpg" alt="NOVA Pro Wireless" />
     <div class="container hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow">Pro.Beyond.</p>
-        <h1 class="title">IPhone 14 Pro</h1>
-        <p class="sub">Created to change everything for the better. For everyone</p>
-        <router-link to="/products" class="btn-outline on-dark hero-btn">Shop Now</router-link>
+        <p class="eyebrow">NOVA Pro Wireless</p>
+        <h1 class="title">Hear the Game</h1>
+        <p class="sub">Low-latency wireless and spatial audio that put you a step ahead. Gear up — to the moon.</p>
+        <router-link to="/products" class="btn-solid hero-btn">Shop Now</router-link>
       </div>
     </div>
   </section>
