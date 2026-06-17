@@ -31,10 +31,10 @@ onMounted(async () => {
 
 <template>
   <HeroSection />
-  <CategoryShowcase />
+  <CategoryShowcase :catalog="catalog" />
   <BrowseByCategory />
   <ProductSection id="catalog" :tabs="tabs" :catalog="catalog" filterable />
-  <PromoBanners />
+  <PromoBanners :catalog="catalog" />
   <ProductSection heading="Discounts up to -50%" :products="discounts" />
   <SummerSale />
 </template>

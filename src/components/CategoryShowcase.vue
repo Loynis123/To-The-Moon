@@ -1,10 +1,23 @@
 <script setup>
-const featured = [
+import { computed } from 'vue'
+
+const props = defineProps({ catalog: { type: Array, default: () => [] } })
+
+const FEATURED = [
   { name: 'HyperX Cloud III', tag: 'Headset', image: '/imgs/hyperx-cloud-3.webp', desc: 'Detailed spatial audio and a lightweight frame for marathon sessions.' },
   { name: 'Logitech G502 X', tag: 'Mouse', image: '/imgs/logitech-g502.jpg', desc: 'LIGHTFORCE switches and a 25.6K sensor — precision, your way.' },
   { name: 'Razer Huntsman V2 TKL', tag: 'Keyboard', image: '/imgs/razer-huntsman-v2-tkl.png', desc: 'Optical switches with near-zero latency and crisp PBT keycaps.' },
   { name: 'Xbox Wireless Controller', tag: 'Controller', image: '/imgs/xbox-controller.jpg', desc: 'Textured grips and low-latency wireless across Xbox and PC.' },
 ]
+
+// Resolve each pick to its catalog record so the tile deep-links to the
+// product page (falls back to the catalog while products are still loading).
+const featured = computed(() =>
+  FEATURED.map((f) => {
+    const p = props.catalog.find((x) => x.name === f.name)
+    return { ...f, id: p?.id ?? null, image: p?.image ?? f.image }
+  }),
+)
 </script>
 
 <template>
@@ -16,7 +29,7 @@ const featured = [
       </div>
 
       <div class="grid">
-        <router-link v-for="p in featured" :key="p.name" to="/products" class="tile">
+        <router-link v-for="p in featured" :key="p.name" :to="p.id ? `/product/${p.id}` : '/products'" class="tile">
           <div class="shot"><img :src="p.image" :alt="p.name" /></div>
           <span class="tag">{{ p.tag }}</span>
           <h3 class="name">{{ p.name }}</h3>

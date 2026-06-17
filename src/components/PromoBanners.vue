@@ -1,15 +1,22 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+const props = defineProps({ catalog: { type: Array, default: () => [] } })
 
 const desc =
   'Tournament-tuned gear with low-latency response and all-day comfort — built to win.'
 
-const banners = [
-  { title: 'Arctis Nova 1', theme: 'light', image: '/imgs/steelseries-arctis-nova-1.png' },
-  { title: 'Model O', theme: 'gray', image: '/imgs/glorious-model-o.jpg' },
-  { title: 'Kumara K552', theme: 'gray', image: '/imgs/redragon-kumara-k552.webp' },
-  { title: 'G435', theme: 'dark', image: '/imgs/logitech-g435.webp' },
+const RAW = [
+  { title: 'Arctis Nova 1', name: 'SteelSeries Arctis Nova 1', theme: 'light', image: '/imgs/steelseries-arctis-nova-1.png' },
+  { title: 'Model O', name: 'Glorious Model O', theme: 'gray', image: '/imgs/glorious-model-o.jpg' },
+  { title: 'Kumara K552', name: 'Redragon Kumara K552', theme: 'gray', image: '/imgs/redragon-kumara-k552.webp' },
+  { title: 'G435', name: 'Logitech G435 LIGHTSPEED', theme: 'dark', image: '/imgs/logitech-g435.webp' },
 ]
+
+// Each banner deep-links to its product once the catalog has loaded.
+const banners = computed(() =>
+  RAW.map((b) => ({ ...b, id: props.catalog.find((x) => x.name === b.name)?.id ?? null })),
+)
 
 // Mobile carousel state (dots). Desktop renders the grid and ignores this.
 const track = ref(null)
@@ -31,7 +38,7 @@ function goTo(i) {
         <div class="photo"><img :src="b.image" :alt="b.title" /></div>
         <h3 class="title">{{ b.title }}</h3>
         <p class="desc">{{ desc }}</p>
-        <router-link to="/products" class="btn-outline" :class="{ 'on-dark': b.theme === 'dark' }">Shop Now</router-link>
+        <router-link :to="b.id ? `/product/${b.id}` : '/products'" class="btn-outline" :class="{ 'on-dark': b.theme === 'dark' }">Shop Now</router-link>
       </article>
     </div>
 
