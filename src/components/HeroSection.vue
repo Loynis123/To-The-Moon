@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
   gap: 40px;
-  min-height: 560px;
+  min-height: 480px;
 }
 .hero-copy {
   flex: 1;
@@ -39,14 +39,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 540px;
+  height: 430px;
 }
 /* Lime spotlight behind the product — reads as an intentional stage, not a tile. */
 .hero-shot::before {
   content: '';
   position: absolute;
-  width: 480px;
-  height: 480px;
+  width: 440px;
+  height: 440px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(194, 255, 71, 0.16), rgba(194, 255, 71, 0.04) 45%, transparent 70%);
   filter: blur(6px);

@@ -29,7 +29,7 @@ const featured = [
 
 <style scoped>
 .showcase {
-  padding: 70px 0 10px;
+  padding: 40px 0 10px;
 }
 .head {
   display: flex;
