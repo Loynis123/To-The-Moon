@@ -10,20 +10,17 @@ const router = useRouter()
 const promo = ref('')
 const bonusCard = ref('')
 
-const ESTIMATED_TAX = 50
-const ESTIMATED_SHIPPING = 29
+const SHIPPING = 490
 
 const subtotal = cartSubtotal
-const total = computed(() =>
-  cart.items.length ? subtotal.value + ESTIMATED_TAX + ESTIMATED_SHIPPING : 0,
-)
+const total = computed(() => (cart.items.length ? subtotal.value + SHIPPING : 0))
 
 const placing = ref(false)
 const placedOrder = ref(null)
 const checkoutError = ref('')
 
 function money(n) {
-  return '$' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 })
+  return Number(n).toLocaleString('ru-RU', { maximumFractionDigits: 0 }) + ' ₽'
 }
 
 function applyBonus() {
@@ -105,12 +102,8 @@ async function checkout() {
               <dd>{{ money(subtotal) }}</dd>
             </div>
             <div class="total-row muted">
-              <dt>Налог (оценка)</dt>
-              <dd>{{ money(cart.items.length ? ESTIMATED_TAX : 0) }}</dd>
-            </div>
-            <div class="total-row muted">
-              <dt>Доставка и обработка (оценка)</dt>
-              <dd>{{ money(cart.items.length ? ESTIMATED_SHIPPING : 0) }}</dd>
+              <dt>Доставка</dt>
+              <dd>{{ money(cart.items.length ? SHIPPING : 0) }}</dd>
             </div>
             <div class="total-row grand">
               <dt>Итого</dt>

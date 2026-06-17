@@ -49,7 +49,7 @@ const displayOldPrice = computed(() =>
 )
 
 function formatPrice(n) {
-  return '$' + (Number.isInteger(n) ? n : Number(n).toFixed(2))
+  return Number(n).toLocaleString('ru-RU') + ' ₽'
 }
 
 async function load() {
@@ -291,6 +291,7 @@ function addToCart() {
             :id="p.id"
             :name="p.name"
             :price="p.price"
+            :old-price="p.oldPrice"
             :image="p.image"
             :favorite="p.favorite"
           />

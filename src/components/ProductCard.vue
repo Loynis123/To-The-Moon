@@ -9,22 +9,30 @@ const props = defineProps({
   id: { type: Number, default: null },
   name: { type: String, required: true },
   price: { type: [String, Number], required: true },
+  oldPrice: { type: [String, Number], default: null },
   image: { type: String, default: '' },
   favorite: { type: Boolean, default: false },
 })
+
+const toNum = (v) => (typeof v === 'number' ? v : Number(String(v ?? '').replace(/[^\d.]/g, '')) || 0)
+const priceNum = computed(() => toNum(props.price))
+const oldNum = computed(() => toNum(props.oldPrice))
+const hasDiscount = computed(() => oldNum.value > priceNum.value)
+const discountPct = computed(() => Math.round((1 - priceNum.value / oldNum.value) * 100))
+const money = (n) => Number(n).toLocaleString('ru-RU') + ' ₽'
 
 const liked = computed(() => favorites.has(props.id ?? props.name))
 const rating = computed(() => productRating(props.id))
 
 function toggleLike() {
-  favorites.toggle({ id: props.id, name: props.name, price: props.price, image: props.image })
+  favorites.toggle({ id: props.id, name: props.name, price: priceNum.value, image: props.image })
 }
 
 const added = ref(false)
 let addedTimer = null
 
 function addToCart() {
-  cart.add({ id: props.id, name: props.name, price: props.price, image: props.image })
+  cart.add({ id: props.id, name: props.name, price: priceNum.value, image: props.image })
   added.value = true
   clearTimeout(addedTimer)
   addedTimer = setTimeout(() => (added.value = false), 1400)
@@ -33,6 +41,7 @@ function addToCart() {
 
 <template>
   <article class="card">
+    <span v-if="hasDiscount" class="badge-disc">−{{ discountPct }}%</span>
     <button class="like" :class="{ on: liked }" @click="toggleLike" aria-label="В избранное">
       <TheIcon :name="liked ? 'heartFilled' : 'heart'" :size="20" />
     </button>
@@ -43,7 +52,7 @@ function addToCart() {
 
     <router-link :to="id ? `/product/${id}` : '/product'" class="name">{{ name }}</router-link>
     <p class="rating"><span class="star">★</span> {{ rating.rating }} <span class="count">({{ rating.reviewCount }})</span></p>
-    <p class="price">{{ typeof price === 'number' ? '$' + price : price }}</p>
+    <p class="price">{{ money(priceNum) }}<s v-if="hasDiscount" class="old">{{ money(oldNum) }}</s></p>
     <button class="btn-solid buy" :class="{ added }" @click="addToCart">
       {{ added ? 'Добавлено ✓' : 'Купить' }}
     </button>
@@ -127,6 +136,26 @@ function addToCart() {
   font-weight: 600;
   color: var(--ink);
   margin-bottom: 18px;
+}
+.price .old {
+  margin-left: 9px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.badge-disc {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 700;
+  font-style: italic;
+  padding: 3px 9px;
+  border-radius: 6px;
 }
 .buy {
   width: 100%;

@@ -5,8 +5,8 @@ import { requireAuth } from '../auth.js'
 const router = Router()
 router.use(requireAuth)
 
-const ESTIMATED_TAX = 50
-const ESTIMATED_SHIPPING = 29
+const ESTIMATED_TAX = 0
+const ESTIMATED_SHIPPING = 490
 
 async function getOrder(orderId, userId) {
   const order = await get('SELECT * FROM orders WHERE id = ? AND user_id = ?', [orderId, userId])

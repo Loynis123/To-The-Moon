@@ -148,10 +148,6 @@ function resetFilters() {
   priceRange.value = { min: priceBounds.value.min, max: priceBounds.value.max }
 }
 
-function formatPrice(n) {
-  return '$' + (Number.isInteger(n) ? n : n.toFixed(2))
-}
-
 function closeSort() {
   sortOpen.value = false
 }
@@ -178,7 +174,14 @@ onUnmounted(() => document.removeEventListener('click', closeSort))
 
     <div v-show="!filtersOpen" class="container layout">
       <div class="filter-panel">
-        <FilterSidebar v-model="selected" :brands="brands" :groups="filterGroups" />
+        <FilterSidebar
+          v-model="selected"
+          :brands="brands"
+          :groups="filterGroups"
+          :price-bounds="priceBounds"
+          :price="priceRange"
+          @update:price="priceRange = $event"
+        />
       </div>
 
       <div class="main">
@@ -215,7 +218,8 @@ onUnmounted(() => document.removeEventListener('click', closeSort))
             :key="p.id ?? p.name + i"
             :id="p.id"
             :name="p.name"
-            :price="formatPrice(p.price)"
+            :price="p.price"
+            :old-price="p.oldPrice"
             :image="p.image"
           />
         </div>

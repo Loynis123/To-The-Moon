@@ -1,17 +1,20 @@
 <script setup>
 import { ref, computed } from 'vue'
+import PriceFilter from './PriceFilter.vue'
 
 const props = defineProps({
   brands: { type: Array, required: true },
   groups: { type: Array, default: () => [] },
   // { 'Brand': [...], 'Battery capacity': [...], ... }
   modelValue: { type: Object, required: true },
+  priceBounds: { type: Object, default: () => ({ min: 0, max: 0 }) },
+  price: { type: Object, default: () => ({ min: 0, max: 0 }) },
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'update:price'])
 
 const brandQuery = ref('')
-// open state per group; Brand starts open
-const open = ref({ Brand: true })
+// open state per group; Price + Brand start open
+const open = ref({ Price: true, Brand: true })
 
 function toggleGroup(name) {
   open.value[name] = !open.value[name]
@@ -37,6 +40,17 @@ function toggle(group, option) {
 
 <template>
   <aside class="sidebar">
+    <!-- Price -->
+    <section class="group">
+      <button class="group-head" @click="toggleGroup('Price')">
+        <span class="group-title">Цена</span>
+        <span class="chev" :class="{ up: open.Price }"></span>
+      </button>
+      <div v-show="open.Price" class="group-body">
+        <PriceFilter :bounds="priceBounds" :model-value="price" @update:model-value="emit('update:price', $event)" />
+      </div>
+    </section>
+
     <!-- Brand -->
     <section class="group">
       <button class="group-head" @click="toggleGroup('Brand')">

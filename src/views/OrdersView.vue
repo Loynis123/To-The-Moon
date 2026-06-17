@@ -8,7 +8,7 @@ const loading = ref(false)
 const error = ref('')
 
 function money(n) {
-  return '$' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 })
+  return Number(n).toLocaleString('ru-RU', { maximumFractionDigits: 0 }) + ' ₽'
 }
 
 function formatDate(s) {
@@ -104,8 +104,8 @@ watch(isAuthed, load)
 
           <dl class="order-totals">
             <div><dt>Сумма</dt><dd>{{ money(o.subtotal) }}</dd></div>
-            <div><dt>Налог</dt><dd>{{ money(o.tax) }}</dd></div>
-            <div><dt>Доставка и обработка</dt><dd>{{ money(o.shipping) }}</dd></div>
+            <div v-if="o.tax"><dt>Налог</dt><dd>{{ money(o.tax) }}</dd></div>
+            <div><dt>Доставка</dt><dd>{{ money(o.shipping) }}</dd></div>
             <div class="grand"><dt>Итого</dt><dd>{{ money(o.total) }}</dd></div>
           </dl>
         </li>

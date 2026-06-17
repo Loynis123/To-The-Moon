@@ -55,6 +55,7 @@ export async function seed() {
   for (const p of productsCatalog) {
     const r = ensure(p.name)
     r.price = toNumber(p.price)
+    if (p.oldPrice) r.old_price = toNumber(p.oldPrice)
     r.image = p.image || r.image
     r.brand = p.brand || r.brand
     r.battery = p.battery || r.battery

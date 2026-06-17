@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
+import PriceFilter from './PriceFilter.vue'
 
 const props = defineProps({
   brands: { type: Array, default: () => [] },
@@ -49,26 +50,6 @@ function filteredOptions(g) {
   return q ? g.options.filter((o) => o.toLowerCase().includes(q)) : g.options
 }
 
-// Price range
-const lo = computed(() => props.priceBounds.min)
-const hi = computed(() => props.priceBounds.max)
-function clamp(v, a, b) {
-  return Math.min(Math.max(v, a), b)
-}
-function setMin(v) {
-  const min = clamp(Math.round(+v || lo.value), lo.value, props.price.max)
-  emit('update:price', { min, max: props.price.max })
-}
-function setMax(v) {
-  const max = clamp(Math.round(+v || hi.value), props.price.min, hi.value)
-  emit('update:price', { min: props.price.min, max })
-}
-const fillStyle = computed(() => {
-  const span = hi.value - lo.value || 1
-  const l = ((props.price.min - lo.value) / span) * 100
-  const r = ((hi.value - props.price.max) / span) * 100
-  return { left: `${l}%`, right: `${r}%` }
-})
 </script>
 
 <template>
@@ -84,37 +65,7 @@ const fillStyle = computed(() => {
         <span class="chev" :class="{ up: open.Price }"></span>
       </button>
       <div v-show="open.Price" class="group-body">
-        <div class="price-fields">
-          <label class="price-field">
-            <span>От</span>
-            <input type="number" :value="price.min" @change="setMin($event.target.value)" />
-          </label>
-          <span class="price-sep"></span>
-          <label class="price-field">
-            <span>До</span>
-            <input type="number" :value="price.max" @change="setMax($event.target.value)" />
-          </label>
-        </div>
-        <div class="slider">
-          <div class="slider-rail"></div>
-          <div class="slider-fill" :style="fillStyle"></div>
-          <input
-            class="slider-input"
-            type="range"
-            :min="lo"
-            :max="hi"
-            :value="price.min"
-            @input="setMin($event.target.value)"
-          />
-          <input
-            class="slider-input"
-            type="range"
-            :min="lo"
-            :max="hi"
-            :value="price.max"
-            @input="setMax($event.target.value)"
-          />
-        </div>
+        <PriceFilter :bounds="priceBounds" :model-value="price" @update:model-value="emit('update:price', $event)" />
       </div>
     </section>
 
@@ -221,92 +172,6 @@ const fillStyle = computed(() => {
 }
 .group-body {
   margin-top: 20px;
-}
-
-/* Price */
-.price-fields {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
-}
-.price-field {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 10px 16px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-}
-.price-field span {
-  font-size: 12px;
-  color: var(--muted);
-}
-.price-field input {
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 16px;
-  color: var(--ink);
-  width: 100%;
-}
-.price-sep {
-  width: 14px;
-  height: 1px;
-  background: var(--line-strong);
-}
-
-.slider {
-  position: relative;
-  height: 26px;
-  display: flex;
-  align-items: center;
-}
-.slider-rail {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--line-strong);
-}
-.slider-fill {
-  position: absolute;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--ink);
-}
-.slider-input {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  margin: 0;
-  background: none;
-  pointer-events: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.slider-input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  pointer-events: auto;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--ink);
-  border: 3px solid #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-.slider-input::-moz-range-thumb {
-  pointer-events: auto;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--ink);
-  border: 3px solid #fff;
-  cursor: pointer;
 }
 
 /* Option lists */
