@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 const props = defineProps({ catalog: { type: Array, default: () => [] } })
 
 const desc =
-  'Турнирное снаряжение с минимальной задержкой и комфортом на весь день — создано побеждать.'
+  'Турнирное снаряжение с минимальной задержкой и комфортом на весь день. Создано, чтобы побеждать.'
 
 const RAW = [
   { title: 'Arctis Nova 1', name: 'SteelSeries Arctis Nova 1', theme: 'light', image: '/imgs/steelseries-arctis-nova-1.png' },

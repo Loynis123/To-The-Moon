@@ -4,7 +4,7 @@
   <section class="sale">
     <div class="inner">
       <h2 class="title">Распродажа <em>Level-Up</em></h2>
-      <p class="sub">До -40% на профессиональное снаряжение. Снаряжайся перед следующим матчем — to the moon.</p>
+      <p class="sub">До -40% на профессиональное снаряжение. Самое время обновить сетап перед новым сезоном.</p>
       <router-link to="/products" class="btn-solid">Купить</router-link>
     </div>
   </section>

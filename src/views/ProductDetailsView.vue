@@ -116,15 +116,18 @@ const description = computed(() => {
   const phrase =
     { Наушники: 'турнирный звук', Мыши: 'точное позиционирование', Клавиатуры: 'молниеносный отклик', Геймпады: 'уверенный контроль' }[
       p.category
-    ] || 'высокую производительность'
+    ] || 'надёжная производительность'
+  // lower-case the first letter of Cyrillic spec values so they read inside a
+  // sentence (DTS 7.1 / Dolby Atmos start with Latin and stay as-is).
+  const lc = (s) => s.replace(/^([А-ЯЁ])/, (m) => m.toLowerCase())
   const bits = []
-  if (p.battery) bits.push(`${p.battery.toLowerCase()} подключение`)
-  if (p.screen) bits.push(p.screen) // surround sound (headsets)
+  if (p.battery) bits.push(`${lc(p.battery)} подключение`)
+  if (p.screen) bits.push(lc(p.screen)) // surround sound (headsets)
   if (p.diagonal) bits.push(`драйверы ${p.diagonal}`) // driver size (headsets)
   if (p.protection && p.category !== 'Наушники') bits.push(`поддержка ${p.protection}`) // platform
   if (p.memory && p.memory !== 'Нет') bits.push(`подсветка ${p.memory}`)
   const feat = bits.length ? ` Среди особенностей — ${bits.join(', ')}.` : ''
-  return `${p.name} обеспечивает ${phrase} уровня ${p.brand || 'gaming'} для соревновательной игры.${feat}`
+  return `${p.name} — это ${phrase} для соревновательной игры.${feat}`
 })
 const detailsIntro = computed(
   () =>

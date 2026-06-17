@@ -5,8 +5,8 @@
     <div class="container hero-inner">
       <div class="hero-copy">
         <p class="eyebrow">HyperX Cloud III</p>
-        <h1 class="title">Услышь игру</h1>
-        <p class="sub">Турнирный звук и снаряжение, которые дают тебе преимущество. Снаряжайся — to the moon.</p>
+        <h1 class="title">Услышь каждый шаг</h1>
+        <p class="sub">Турнирный звук и снаряжение, с которыми ты на шаг впереди соперника.</p>
         <router-link to="/products" class="btn-solid hero-btn">В каталог</router-link>
       </div>
       <div class="hero-shot">

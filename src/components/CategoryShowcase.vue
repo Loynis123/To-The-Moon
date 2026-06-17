@@ -5,9 +5,9 @@ const props = defineProps({ catalog: { type: Array, default: () => [] } })
 
 const FEATURED = [
   { name: 'HyperX Cloud III', tag: 'Наушники', image: '/imgs/hyperx-cloud-3.webp', desc: 'Детальный пространственный звук и лёгкий корпус для долгих сессий.' },
-  { name: 'Logitech G502 X', tag: 'Мышь', image: '/imgs/logitech-g502.jpg', desc: 'Переключатели LIGHTFORCE и сенсор 25.6K — точность по-вашему.' },
+  { name: 'Logitech G502 X', tag: 'Мышь', image: '/imgs/logitech-g502.jpg', desc: 'Переключатели LIGHTFORCE и сенсор 25K DPI — точность в каждом движении.' },
   { name: 'Razer Huntsman V2 TKL', tag: 'Клавиатура', image: '/imgs/razer-huntsman-v2-tkl.png', desc: 'Оптические переключатели с минимальной задержкой и кейкапы из PBT.' },
-  { name: 'Xbox Wireless Controller', tag: 'Геймпад', image: '/imgs/xbox-controller.jpg', desc: 'Текстурные грипсы и беспроводная связь на Xbox и ПК.' },
+  { name: 'Xbox Wireless Controller', tag: 'Геймпад', image: '/imgs/xbox-controller.jpg', desc: 'Цепкие накладки и беспроводное подключение к Xbox и ПК.' },
 ]
 
 // Resolve each pick to its catalog record so the tile deep-links to the
