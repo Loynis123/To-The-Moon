@@ -2,13 +2,13 @@
 import { ref } from 'vue'
 
 const desc =
-  'Tournament-tuned drivers, low-latency wireless and all-day comfort — gear built to win.'
+  'Tournament-tuned gear with low-latency response and all-day comfort — built to win.'
 
 const banners = [
-  { title: 'Cloud III', theme: 'light', image: '/imgs/hyperx-cloud-3.webp' },
-  { title: 'G502 X', theme: 'gray', image: '/imgs/logitech-g502.jpg' },
-  { title: 'Huntsman V2', theme: 'gray', image: '/imgs/razer-huntsman-v2-tkl.png' },
-  { title: 'DeathAdder', theme: 'dark', image: '/imgs/razer-deathadder-essential.jpg' },
+  { title: 'Arctis Nova 1', theme: 'light', image: '/imgs/steelseries-arctis-nova-1.png' },
+  { title: 'Model O', theme: 'gray', image: '/imgs/glorious-model-o.jpg' },
+  { title: 'Kumara K552', theme: 'gray', image: '/imgs/redragon-kumara-k552.webp' },
+  { title: 'G435', theme: 'dark', image: '/imgs/logitech-g435.webp' },
 ]
 
 // Mobile carousel state (dots). Desktop renders the grid and ignores this.

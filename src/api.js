@@ -1,7 +1,7 @@
 // Thin fetch wrapper around the backend API.
 // Token is kept in localStorage and attached as a Bearer header.
 
-const TOKEN_KEY = 'cyber_token'
+const TOKEN_KEY = 'ttm_token'
 
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY) || ''

@@ -9,7 +9,7 @@ import { isAuthed } from './user.js'
 //             the response (the full cart) replaces local state.
 // On login any guest items are merged up to the server, then cleared locally.
 
-const GUEST_KEY = 'cyber_cart_guest'
+const GUEST_KEY = 'ttm_cart_guest'
 
 const state = reactive({
   items: [], // normalised: { key, serverId, productId, name, image, price, qty, variant, article, color, memory }

@@ -3,7 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ProductCard from '../components/ProductCard.vue'
 import { fetchProduct, fetchAllProducts } from '../catalog-api.js'
-import { getVariants } from '../product-variants.js'
+import { getVariants, productRating } from '../product-variants.js'
 import { cart } from '../cart.js'
 import { favorites } from '../favorites.js'
 
@@ -113,20 +113,28 @@ const detailsTable = computed(() => {
 
 const description = computed(() => {
   const p = product.value
+  const noun =
+    { Headsets: 'audio', Mice: 'tracking', Keyboards: 'response', Controllers: 'control' }[p.category] ||
+    'performance'
   const bits = []
   if (p.battery) bits.push(`${p.battery.toLowerCase()} connectivity`)
-  if (p.screen) bits.push(p.screen.toLowerCase())
-  if (p.diagonal) bits.push(`${p.diagonal} drivers`)
+  if (p.screen) bits.push(p.screen.toLowerCase()) // surround sound (headsets)
+  if (p.diagonal) bits.push(`${p.diagonal} drivers`) // driver size (headsets)
+  if (p.protection && p.category !== 'Headsets') bits.push(`${p.protection} support`) // platform
+  if (p.memory && p.memory !== 'None') bits.push(`${p.memory} lighting`)
   const feat = bits.length ? `, featuring ${bits.join(', ')}` : ''
-  return `The ${p.name} delivers tournament-grade ${p.brand || 'gaming'} audio built for competitive play${feat}.`
+  return `The ${p.name} delivers tournament-grade ${p.brand || 'gaming'} ${noun} built for competitive play${feat}.`
 })
 const detailsIntro = computed(
   () =>
     `Everything you need to know about the ${product.value.name} at a glance — its key specifications and characteristics are listed below.`,
 )
 
-const rating = 4.8
-const reviewCount = 125
+const ratingInfo = computed(() => productRating(product.value.id))
+const ratingStars = computed(() => {
+  const r = ratingInfo.value.rating
+  return Array.from({ length: 5 }, (_, i) => (i + 1 <= Math.floor(r) ? 'full' : i < r ? 'half' : 'empty'))
+})
 
 function addToCart() {
   cart.add({
@@ -260,9 +268,9 @@ function addToCart() {
       <!-- reviews -->
       <section class="reviews">
         <div class="rating-card">
-          <div class="rating-num">{{ rating }}</div>
-          <div class="stars" aria-hidden="true">★★★★<span class="half">★</span></div>
-          <div class="rating-sub">of {{ reviewCount }} reviews</div>
+          <div class="rating-num">{{ ratingInfo.rating }}</div>
+          <div class="stars" aria-hidden="true"><span v-for="(s, i) in ratingStars" :key="i" :class="s">★</span></div>
+          <div class="rating-sub">of {{ ratingInfo.reviewCount }} reviews</div>
         </div>
       </section>
 
@@ -625,7 +633,10 @@ function addToCart() {
   letter-spacing: 2px;
 }
 .stars .half {
-  opacity: 0.4;
+  opacity: 0.45;
+}
+.stars .empty {
+  opacity: 0.2;
 }
 .rating-sub {
   font-size: 13px;

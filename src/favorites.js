@@ -8,7 +8,7 @@ import { isAuthed } from './user.js'
 //  - authed: mirrors the server; mutations hit the API.
 // Uniqueness is by product (productId when known, else name).
 
-const GUEST_KEY = 'cyber_fav_guest'
+const GUEST_KEY = 'ttm_fav_guest'
 
 const state = reactive({
   items: [], // { key, serverId, productId, name, image, price, article }

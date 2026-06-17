@@ -22,6 +22,15 @@ function deriveColor(name = '') {
   )
 }
 
+// Stable per-product rating derived from the id — there's no live reviews
+// backend, but this keeps each product reading differently (not a flat mock).
+export function productRating(id) {
+  const seed = Number(id) || 1
+  const rating = Math.round((4.2 + ((seed * 13) % 8) / 10) * 10) / 10 // 4.2–4.9
+  const reviewCount = 48 + ((seed * 53) % 420) // 48–467
+  return { rating, reviewCount }
+}
+
 // Returns { colors: [{name, hex, image}], memories: [] } for a product.
 export function getVariants(product) {
   const name = deriveColor(product?.name) || 'Standard'

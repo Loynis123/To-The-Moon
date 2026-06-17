@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import TheIcon from './TheIcon.vue'
 import { cart } from '../cart.js'
 import { favorites } from '../favorites.js'
+import { productRating } from '../product-variants.js'
 
 const props = defineProps({
   id: { type: Number, default: null },
@@ -13,6 +14,7 @@ const props = defineProps({
 })
 
 const liked = computed(() => favorites.has(props.id ?? props.name))
+const rating = computed(() => productRating(props.id))
 
 function toggleLike() {
   favorites.toggle({ id: props.id, name: props.name, price: props.price, image: props.image })
@@ -40,6 +42,7 @@ function addToCart() {
     </router-link>
 
     <router-link :to="id ? `/product/${id}` : '/product'" class="name">{{ name }}</router-link>
+    <p class="rating"><span class="star">★</span> {{ rating.rating }} <span class="count">({{ rating.reviewCount }})</span></p>
     <p class="price">{{ typeof price === 'number' ? '$' + price : price }}</p>
     <button class="btn-solid buy" :class="{ added }" @click="addToCart">
       {{ added ? 'Added ✓' : 'Buy Now' }}
@@ -96,12 +99,28 @@ function addToCart() {
   font-style: italic;
   line-height: 1.35;
   color: var(--ink);
-  margin: 6px 0 14px;
+  margin: 6px 0 8px;
   min-height: 41px;
   max-width: 90%;
 }
 .name:hover {
   text-decoration: underline;
+}
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.rating .star {
+  color: #f5a623;
+}
+.rating .count {
+  color: var(--muted);
+  font-weight: 400;
 }
 .price {
   font-size: 24px;
