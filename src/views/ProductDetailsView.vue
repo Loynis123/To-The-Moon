@@ -142,8 +142,11 @@ function addToCart() {
     name: product.value.name,
     price: displayPrice.value,
     image: currentImage.value,
-    color: colors.value[activeColor.value]?.name || '',
-    memory: memories.value[activeMemory.value]?.label || '',
+    // Only treat colour/memory as a cart variant when there's a real choice;
+    // otherwise the lone default ('Standard') would key it apart from the same
+    // product added from a card (which sends none), splitting it into two rows.
+    color: colors.value.length > 1 ? colors.value[activeColor.value]?.name || '' : '',
+    memory: memories.value.length > 1 ? memories.value[activeMemory.value]?.label || '' : '',
   })
   router.push('/cart')
 }
