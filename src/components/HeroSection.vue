@@ -34,19 +34,29 @@
   max-width: 560px;
 }
 .hero-shot {
-  flex: 0 0 42%;
+  position: relative;
+  flex: 0 0 46%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 460px;
-  padding: 16px;
-  /* Soft light pool so the dark headset reads on the black hero. */
-  background: radial-gradient(closest-side at 50% 50%, rgba(255, 255, 255, 0.08), transparent 72%);
+  height: 540px;
+}
+/* Lime spotlight behind the product — reads as an intentional stage, not a tile. */
+.hero-shot::before {
+  content: '';
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(194, 255, 71, 0.16), rgba(194, 255, 71, 0.04) 45%, transparent 70%);
+  filter: blur(6px);
 }
 .hero-shot img {
+  position: relative;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  filter: drop-shadow(0 28px 55px rgba(0, 0, 0, 0.55));
 }
 .eyebrow {
   font-size: 14px;
