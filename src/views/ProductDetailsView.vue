@@ -517,7 +517,8 @@ function addToCart() {
   font-size: 15px;
 }
 .actions .wish.on {
-  background: var(--ink);
+  background: var(--heart);
+  border-color: var(--heart);
   color: var(--white);
 }
 
