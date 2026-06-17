@@ -10,7 +10,7 @@
         <router-link to="/products" class="btn-solid hero-btn">Shop Now</router-link>
       </div>
       <div class="hero-shot">
-        <img src="/imgs/hyperx-cloud-3.webp" alt="HyperX Cloud III" />
+        <img src="/imgs/hyperx-cloud-hero.png" alt="HyperX Cloud III" />
       </div>
     </div>
   </section>
@@ -38,10 +38,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 420px;
-  padding: 32px;
-  background: #fff;
-  border-radius: 18px;
+  height: 460px;
+  padding: 16px;
+  /* Soft light pool so the dark headset reads on the black hero. */
+  background: radial-gradient(closest-side at 50% 50%, rgba(255, 255, 255, 0.08), transparent 72%);
 }
 .hero-shot img {
   max-width: 100%;
