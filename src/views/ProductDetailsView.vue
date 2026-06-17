@@ -225,7 +225,7 @@ function addToCart() {
             <button class="btn-outline wish" :class="{ on: liked }" @click="toggleWishlist">
               {{ liked ? 'In Wishlist ♥' : 'Add to Wishlist' }}
             </button>
-            <button class="btn-solid cart" @click="addToCart">Add to Card</button>
+            <button class="btn-solid cart" @click="addToCart">Add to Cart</button>
           </div>
 
           <div class="guarantees">
