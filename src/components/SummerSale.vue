@@ -3,9 +3,9 @@
 <template>
   <section class="sale">
     <div class="inner">
-      <h2 class="title">Level-Up <em>Sale</em></h2>
-      <p class="sub">Up to 40% off pro-grade gear. Gear up before your next match — to the moon.</p>
-      <router-link to="/products" class="btn-solid">Shop Now</router-link>
+      <h2 class="title">Распродажа <em>Level-Up</em></h2>
+      <p class="sub">До -40% на профессиональное снаряжение. Снаряжайся перед следующим матчем — to the moon.</p>
+      <router-link to="/products" class="btn-solid">Купить</router-link>
     </div>
   </section>
 </template>

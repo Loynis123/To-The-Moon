@@ -29,7 +29,7 @@ router.post('/', async (req, res, next) => {
   try {
     const { productId } = req.body || {}
     const product = await get('SELECT id FROM products WHERE id = ?', [productId])
-    if (!product) return res.status(404).json({ error: 'Product not found' })
+    if (!product) return res.status(404).json({ error: 'Товар не найден' })
 
     await run('INSERT OR IGNORE INTO favorites (user_id, product_id) VALUES (?, ?)', [req.user.id, productId])
     res.status(201).json(await getFavorites(req.user.id))

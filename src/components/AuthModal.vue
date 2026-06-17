@@ -39,7 +39,7 @@ async function submit() {
     form.password = ''
     emit('close')
   } catch (err) {
-    error.value = err.message || 'Something went wrong'
+    error.value = err.message || 'Что-то пошло не так'
   } finally {
     loading.value = false
   }
@@ -50,37 +50,37 @@ async function submit() {
   <transition name="fade">
     <div v-if="open" class="overlay" @click.self="emit('close')">
       <div class="modal" role="dialog" aria-modal="true">
-        <button class="close" aria-label="Close" @click="emit('close')">✕</button>
+        <button class="close" aria-label="Закрыть" @click="emit('close')">✕</button>
 
         <div class="tabs">
-          <button :class="{ active: mode === 'login' }" @click="switchMode('login')">Sign In</button>
-          <button :class="{ active: mode === 'register' }" @click="switchMode('register')">Register</button>
+          <button :class="{ active: mode === 'login' }" @click="switchMode('login')">Вход</button>
+          <button :class="{ active: mode === 'register' }" @click="switchMode('register')">Регистрация</button>
         </div>
 
         <form @submit.prevent="submit">
           <label v-if="mode === 'register'" class="field">
-            <span>Name</span>
-            <input v-model="form.name" type="text" placeholder="Your name" autocomplete="name" />
+            <span>Имя</span>
+            <input v-model="form.name" type="text" placeholder="Ваше имя" autocomplete="name" />
           </label>
 
           <label class="field">
-            <span>Email</span>
+            <span>Эл. почта</span>
             <input v-model="form.email" type="email" placeholder="you@example.com" autocomplete="email" required />
           </label>
 
           <label class="field">
-            <span>Password</span>
+            <span>Пароль</span>
             <input v-model="form.password" type="password" placeholder="••••••" autocomplete="current-password" required minlength="6" />
           </label>
 
           <p v-if="error" class="error">{{ error }}</p>
 
           <button class="submit" type="submit" :disabled="loading">
-            {{ loading ? 'Please wait…' : mode === 'login' ? 'Sign In' : 'Create account' }}
+            {{ loading ? 'Подождите…' : mode === 'login' ? 'Войти' : 'Создать аккаунт' }}
           </button>
         </form>
 
-        <p v-if="mode === 'login'" class="hint">Demo: demo@tothemoon.gg / password123</p>
+        <p v-if="mode === 'login'" class="hint">Демо: demo@tothemoon.gg / password123</p>
       </div>
     </div>
   </transition>

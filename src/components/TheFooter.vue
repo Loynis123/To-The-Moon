@@ -2,20 +2,20 @@
 import TheIcon from './TheIcon.vue'
 
 const services = [
-  'Bonus program',
-  'Gift cards',
-  'Credit and payment',
-  'Service contracts',
-  'Non-cash account',
-  'Payment',
+  'Бонусная программа',
+  'Подарочные карты',
+  'Кредит и оплата',
+  'Сервисные контракты',
+  'Безналичный расчёт',
+  'Оплата',
 ]
 const assistance = [
-  'Find an order',
-  'Terms of delivery',
-  'Exchange and return of goods',
-  'Guarantee',
-  'Frequently asked questions',
-  'Terms of use of the site',
+  'Найти заказ',
+  'Условия доставки',
+  'Обмен и возврат товара',
+  'Гарантия',
+  'Частые вопросы',
+  'Условия использования сайта',
 ]
 const socials = ['twitter', 'facebook', 'tiktok', 'instagram']
 </script>
@@ -29,20 +29,20 @@ const socials = ['twitter', 'facebook', 'tiktok', 'instagram']
           <span class="logo-text">TO&nbsp;THE&nbsp;<span>MOON</span></span>
         </a>
         <p class="about">
-          Pro-grade gaming audio that takes your game to the moon. Tournament-tuned headsets and gear
-          for players who want every footstep, every shot, every win.
+          Профессиональный игровой звук, который выводит твою игру на новый уровень. Турнирные
+          гарнитуры и снаряжение для тех, кому важен каждый шаг, каждый выстрел, каждая победа.
         </p>
       </div>
 
       <nav class="col col-services">
-        <h4 class="col-title">Services</h4>
+        <h4 class="col-title">Сервисы</h4>
         <ul>
           <li v-for="item in services" :key="item"><a href="#">{{ item }}</a></li>
         </ul>
       </nav>
 
       <nav class="col col-assist">
-        <h4 class="col-title">Assistance to the buyer</h4>
+        <h4 class="col-title">Помощь покупателю</h4>
         <ul>
           <li v-for="item in assistance" :key="item"><a href="#">{{ item }}</a></li>
         </ul>

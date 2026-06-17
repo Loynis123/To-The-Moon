@@ -25,7 +25,7 @@ router.post('/', async (req, res, next) => {
       [req.user.id],
     )
 
-    if (!cartItems.length) return res.status(400).json({ error: 'Cart is empty' })
+    if (!cartItems.length) return res.status(400).json({ error: 'Корзина пуста' })
 
     const subtotal = cartItems.reduce((s, i) => s + i.price * i.qty, 0)
     const total = subtotal + ESTIMATED_TAX + ESTIMATED_SHIPPING
@@ -74,7 +74,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const order = await getOrder(req.params.id, req.user.id)
-    if (!order) return res.status(404).json({ error: 'Order not found' })
+    if (!order) return res.status(404).json({ error: 'Заказ не найден' })
     res.json(order)
   } catch (err) {
     next(err)

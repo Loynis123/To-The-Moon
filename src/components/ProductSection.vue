@@ -53,6 +53,16 @@ const filterLabel = computed(() => {
   if (filters.search.trim()) parts.push(`“${filters.search.trim()}”`)
   return parts.join(' · ')
 })
+
+// Russian plural for "товар" (1 товар / 2 товара / 5 товаров).
+const resultsWord = computed(() => {
+  const n = visible.value.length
+  const m10 = n % 10
+  const m100 = n % 100
+  if (m10 === 1 && m100 !== 11) return 'товар'
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return 'товара'
+  return 'товаров'
+})
 </script>
 
 <template>
@@ -73,10 +83,10 @@ const filterLabel = computed(() => {
 
       <div v-if="filterMode" class="filter-bar">
         <span class="filter-text">
-          Showing <b>{{ visible.length }}</b> result<span v-if="visible.length !== 1">s</span>
-          <template v-if="filterLabel"> for <b>{{ filterLabel }}</b></template>
+          Показано <b>{{ visible.length }}</b> {{ resultsWord }}
+          <template v-if="filterLabel"> — <b>{{ filterLabel }}</b></template>
         </span>
-        <button class="filter-clear" @click="clearFilters">Clear ✕</button>
+        <button class="filter-clear" @click="clearFilters">Сбросить ✕</button>
       </div>
 
       <div v-if="visible.length" class="grid">
@@ -90,7 +100,7 @@ const filterLabel = computed(() => {
           :favorite="p.favorite"
         />
       </div>
-      <p v-else class="empty">No products found. Try a different filter.</p>
+      <p v-else class="empty">Ничего не найдено. Попробуйте изменить фильтр.</p>
     </div>
   </section>
 </template>

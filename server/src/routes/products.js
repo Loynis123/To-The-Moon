@@ -33,10 +33,10 @@ function asList(v) {
 }
 
 const SORT_SQL = {
-  'By rating': 'id ASC',
-  'Price: low to high': 'price ASC',
-  'Price: high to low': 'price DESC',
-  'Newest first': 'id DESC',
+  'По рейтингу': 'id ASC',
+  'Цена: по возрастанию': 'price ASC',
+  'Цена: по убыванию': 'price DESC',
+  'Сначала новые': 'id DESC',
   price_asc: 'price ASC',
   price_desc: 'price DESC',
   newest: 'id DESC',
@@ -118,7 +118,7 @@ router.get('/', async (req, res, next) => {
   }
 
   const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : ''
-  const orderSql = SORT_SQL[req.query.sort] || SORT_SQL['By rating']
+  const orderSql = SORT_SQL[req.query.sort] || SORT_SQL['По рейтингу']
 
   const totalRow = await get(`SELECT COUNT(*) AS n FROM products ${whereSql}`, params)
   const total = totalRow.n
@@ -147,7 +147,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const row = await get('SELECT * FROM products WHERE id = ?', [req.params.id])
-    if (!row) return res.status(404).json({ error: 'Product not found' })
+    if (!row) return res.status(404).json({ error: 'Товар не найден' })
     res.json(serialize(row))
   } catch (err) {
     next(err)

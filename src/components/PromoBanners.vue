@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 const props = defineProps({ catalog: { type: Array, default: () => [] } })
 
 const desc =
-  'Tournament-tuned gear with low-latency response and all-day comfort — built to win.'
+  'Турнирное снаряжение с минимальной задержкой и комфортом на весь день — создано побеждать.'
 
 const RAW = [
   { title: 'Arctis Nova 1', name: 'SteelSeries Arctis Nova 1', theme: 'light', image: '/imgs/steelseries-arctis-nova-1.png' },
@@ -38,7 +38,7 @@ function goTo(i) {
         <div class="photo"><img :src="b.image" :alt="b.title" /></div>
         <h3 class="title">{{ b.title }}</h3>
         <p class="desc">{{ desc }}</p>
-        <router-link :to="b.id ? `/product/${b.id}` : '/products'" class="btn-outline" :class="{ 'on-dark': b.theme === 'dark' }">Shop Now</router-link>
+        <router-link :to="b.id ? `/product/${b.id}` : '/products'" class="btn-outline" :class="{ 'on-dark': b.theme === 'dark' }">Купить</router-link>
       </article>
     </div>
 

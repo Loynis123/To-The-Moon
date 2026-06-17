@@ -5,9 +5,9 @@
     <div class="container hero-inner">
       <div class="hero-copy">
         <p class="eyebrow">HyperX Cloud III</p>
-        <h1 class="title">Hear the Game</h1>
-        <p class="sub">Tournament-grade gaming audio and gear that put you a step ahead. Gear up — to the moon.</p>
-        <router-link to="/products" class="btn-solid hero-btn">Shop Now</router-link>
+        <h1 class="title">Услышь игру</h1>
+        <p class="sub">Турнирный звук и снаряжение, которые дают тебе преимущество. Снаряжайся — to the moon.</p>
+        <router-link to="/products" class="btn-solid hero-btn">В каталог</router-link>
       </div>
       <div class="hero-shot">
         <img src="/imgs/hyperx-cloud-hero.png" alt="HyperX Cloud III" />

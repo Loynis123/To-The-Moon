@@ -11,7 +11,7 @@ const route = useRoute()
 const router = useRouter()
 
 // Fallback product so the page renders even without an id in the URL.
-const FALLBACK = { name: 'HyperX Cloud III', price: 100, image: '/imgs/hyperx-cloud-3.webp', category: 'Headsets', brand: 'HyperX' }
+const FALLBACK = { name: 'HyperX Cloud III', price: 100, image: '/imgs/hyperx-cloud-3.webp', category: 'Наушники', brand: 'HyperX' }
 const product = ref(FALLBACK)
 const allProducts = ref([])
 
@@ -77,11 +77,11 @@ const related = computed(() => {
 // Spec chips are built from the product's real fields (empty ones are skipped),
 // so every product shows its own characteristics instead of a fixed sheet.
 const SPEC_DEFS = [
-  { key: 'battery', label: 'Connectivity', icon: '/icons/spec-battery.png' },
-  { key: 'screen', label: 'Surround sound', icon: '/icons/spec-cpu.png' },
-  { key: 'diagonal', label: 'Driver size', icon: '/icons/spec-cores.png' },
-  { key: 'protection', label: 'Platform', icon: '/icons/info-guarantee.png' },
-  { key: 'memory', label: 'Lighting', icon: '/icons/spec-screen.png' },
+  { key: 'battery', label: 'Подключение', icon: '/icons/spec-battery.png' },
+  { key: 'screen', label: 'Объёмный звук', icon: '/icons/spec-cpu.png' },
+  { key: 'diagonal', label: 'Размер драйвера', icon: '/icons/spec-cores.png' },
+  { key: 'protection', label: 'Платформа', icon: '/icons/info-guarantee.png' },
+  { key: 'memory', label: 'Подсветка', icon: '/icons/spec-screen.png' },
 ]
 const specs = computed(() =>
   SPEC_DEFS.filter((d) => product.value[d.key]).map((d) => ({
@@ -92,42 +92,43 @@ const specs = computed(() =>
 )
 
 const guarantees = [
-  { icon: '/icons/info-delivery.png', label: 'Free Delivery', value: '1-2 day' },
-  { icon: '/icons/info-stock.png', label: 'In Stock', value: 'Today' },
-  { icon: '/icons/info-guarantee.png', label: 'Guaranteed', value: '1 year' },
+  { icon: '/icons/info-delivery.png', label: 'Бесплатная доставка', value: '1–2 дня' },
+  { icon: '/icons/info-stock.png', label: 'В наличии', value: 'Сегодня' },
+  { icon: '/icons/info-guarantee.png', label: 'Гарантия', value: '1 год' },
 ]
 
 const detailsTable = computed(() => {
   const p = product.value
   const rows = []
   const add = (label, val) => val && rows.push({ label, value: [val] })
-  add('Brand', p.brand)
-  add('Category', p.category)
-  add('Connectivity', p.battery)
-  add('Surround sound', p.screen)
-  add('Driver size', p.diagonal)
-  add('Platform', p.protection)
-  add('Lighting', p.memory)
+  add('Бренд', p.brand)
+  add('Категория', p.category)
+  add('Подключение', p.battery)
+  add('Объёмный звук', p.screen)
+  add('Размер драйвера', p.diagonal)
+  add('Платформа', p.protection)
+  add('Подсветка', p.memory)
   return rows
 })
 
 const description = computed(() => {
   const p = product.value
-  const noun =
-    { Headsets: 'audio', Mice: 'tracking', Keyboards: 'response', Controllers: 'control' }[p.category] ||
-    'performance'
+  const phrase =
+    { Наушники: 'турнирный звук', Мыши: 'точное позиционирование', Клавиатуры: 'молниеносный отклик', Геймпады: 'уверенный контроль' }[
+      p.category
+    ] || 'высокую производительность'
   const bits = []
-  if (p.battery) bits.push(`${p.battery.toLowerCase()} connectivity`)
-  if (p.screen) bits.push(p.screen.toLowerCase()) // surround sound (headsets)
-  if (p.diagonal) bits.push(`${p.diagonal} drivers`) // driver size (headsets)
-  if (p.protection && p.category !== 'Headsets') bits.push(`${p.protection} support`) // platform
-  if (p.memory && p.memory !== 'None') bits.push(`${p.memory} lighting`)
-  const feat = bits.length ? `, featuring ${bits.join(', ')}` : ''
-  return `The ${p.name} delivers tournament-grade ${p.brand || 'gaming'} ${noun} built for competitive play${feat}.`
+  if (p.battery) bits.push(`${p.battery.toLowerCase()} подключение`)
+  if (p.screen) bits.push(p.screen) // surround sound (headsets)
+  if (p.diagonal) bits.push(`драйверы ${p.diagonal}`) // driver size (headsets)
+  if (p.protection && p.category !== 'Наушники') bits.push(`поддержка ${p.protection}`) // platform
+  if (p.memory && p.memory !== 'Нет') bits.push(`подсветка ${p.memory}`)
+  const feat = bits.length ? ` Среди особенностей — ${bits.join(', ')}.` : ''
+  return `${p.name} обеспечивает ${phrase} уровня ${p.brand || 'gaming'} для соревновательной игры.${feat}`
 })
 const detailsIntro = computed(
   () =>
-    `Everything you need to know about the ${product.value.name} at a glance — its key specifications and characteristics are listed below.`,
+    `Всё, что нужно знать о ${product.value.name} — ключевые характеристики и особенности приведены ниже.`,
 )
 
 const ratingInfo = computed(() => productRating(product.value.id))
@@ -157,8 +158,8 @@ function addToCart() {
     <div class="container">
       <!-- breadcrumb -->
       <nav class="crumbs">
-        <router-link to="/">Home</router-link><span>›</span>
-        <router-link to="/products">Catalog</router-link><span>›</span>
+        <router-link to="/">Главная</router-link><span>›</span>
+        <router-link to="/products">Каталог</router-link><span>›</span>
         <template v-if="product.brand"><router-link to="/products">{{ product.brand }}</router-link><span>›</span></template>
         <span class="current">{{ product.name }}</span>
       </nav>
@@ -191,7 +192,7 @@ function addToCart() {
 
           <div v-if="colors.length > 1 || memories.length > 1" class="selectors">
             <div v-if="colors.length > 1" class="block">
-              <span class="block-label">Select color : <b>{{ colors[activeColor]?.name }}</b></span>
+              <span class="block-label">Выбрать цвет : <b>{{ colors[activeColor]?.name }}</b></span>
               <div class="swatches">
                 <button
                   v-for="(c, i) in colors"
@@ -229,14 +230,14 @@ function addToCart() {
           </ul>
 
           <p class="desc">
-            {{ description }} <a href="#" class="more">more...</a>
+            {{ description }} <a href="#" class="more">подробнее...</a>
           </p>
 
           <div class="actions">
             <button class="btn-outline wish" :class="{ on: liked }" @click="toggleWishlist">
-              {{ liked ? 'In Wishlist ♥' : 'Add to Wishlist' }}
+              {{ liked ? 'В избранном ♥' : 'В избранное' }}
             </button>
-            <button class="btn-solid cart" @click="addToCart">Add to Cart</button>
+            <button class="btn-solid cart" @click="addToCart">В корзину</button>
           </div>
 
           <div class="guarantees">
@@ -255,7 +256,7 @@ function addToCart() {
     <!-- details -->
     <div class="container">
       <section class="details">
-        <h2 class="section-title">Details</h2>
+        <h2 class="section-title">Характеристики</h2>
         <p class="details-intro">{{ detailsIntro }}</p>
 
         <dl class="spec-table">
@@ -273,13 +274,13 @@ function addToCart() {
         <div class="rating-card">
           <div class="rating-num">{{ ratingInfo.rating }}</div>
           <div class="stars" aria-hidden="true"><span v-for="(s, i) in ratingStars" :key="i" :class="s">★</span></div>
-          <div class="rating-sub">of {{ ratingInfo.reviewCount }} reviews</div>
+          <div class="rating-sub">на основе {{ ratingInfo.reviewCount }} отзывов</div>
         </div>
       </section>
 
       <!-- related -->
       <section class="related">
-        <h2 class="section-title plain">Related Products</h2>
+        <h2 class="section-title plain">Похожие товары</h2>
         <div class="related-grid">
           <ProductCard
             v-for="p in related"

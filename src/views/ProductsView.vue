@@ -10,7 +10,7 @@ const PAGE_SIZE = 9
 
 const brands = ref([])
 const filterGroups = ref([])
-const sortOptions = ref(['By rating'])
+const sortOptions = ref(['По рейтингу'])
 
 // group name -> product property it filters on (also the API query-param key)
 const groupProp = computed(() => ({
@@ -25,7 +25,7 @@ function emptySelection(brandDefault = []) {
 }
 
 const selected = ref({ Brand: [] })
-const sortBy = ref('By rating')
+const sortBy = ref('По рейтингу')
 const sortOpen = ref(false)
 const page = ref(1)
 
@@ -184,7 +184,7 @@ onUnmounted(() => document.removeEventListener('click', closeSort))
       <div class="main">
         <div class="toolbar">
           <button class="filters-btn" @click="filtersOpen = true">
-            Filters
+            Фильтры
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
               <line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" />
               <circle cx="9" cy="7" r="2" fill="var(--white)" /><circle cx="15" cy="12" r="2" fill="var(--white)" /><circle cx="8" cy="17" r="2" fill="var(--white)" />
@@ -192,8 +192,8 @@ onUnmounted(() => document.removeEventListener('click', closeSort))
           </button>
 
           <p class="count">
-            Products Result : <b>{{ total }}</b>
-            <button v-if="hasActiveFilters" class="reset" @click="resetFilters">Reset filters ✕</button>
+            Товаров найдено : <b>{{ total }}</b>
+            <button v-if="hasActiveFilters" class="reset" @click="resetFilters">Сбросить фильтры ✕</button>
           </p>
 
           <div class="sort" :class="{ open: sortOpen }" @click.stop>
@@ -219,7 +219,7 @@ onUnmounted(() => document.removeEventListener('click', closeSort))
             :image="p.image"
           />
         </div>
-        <p v-else-if="!loading" class="empty">No products match the selected filters.</p>
+        <p v-else-if="!loading" class="empty">Нет товаров по выбранным фильтрам.</p>
 
         <nav v-if="pageCount > 1" class="pagination">
           <button class="pg arrow" :disabled="page === 1" @click="go(page - 1)">

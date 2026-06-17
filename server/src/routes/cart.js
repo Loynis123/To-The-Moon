@@ -33,7 +33,7 @@ router.post('/', async (req, res, next) => {
   try {
     const { productId, qty = 1, color = '', memory = '' } = req.body || {}
     const product = await get('SELECT id FROM products WHERE id = ?', [productId])
-    if (!product) return res.status(404).json({ error: 'Product not found' })
+    if (!product) return res.status(404).json({ error: 'Товар не найден' })
 
     const q = Math.max(1, parseInt(qty, 10) || 1)
     const existing = await get(
@@ -58,10 +58,10 @@ router.patch('/:itemId', async (req, res, next) => {
   try {
     const { qty } = req.body || {}
     const q = parseInt(qty, 10)
-    if (!Number.isInteger(q)) return res.status(400).json({ error: 'qty must be an integer' })
+    if (!Number.isInteger(q)) return res.status(400).json({ error: 'Количество должно быть целым числом' })
 
     const item = await get('SELECT id FROM cart_items WHERE id = ? AND user_id = ?', [req.params.itemId, req.user.id])
-    if (!item) return res.status(404).json({ error: 'Cart item not found' })
+    if (!item) return res.status(404).json({ error: 'Позиция корзины не найдена' })
 
     if (q <= 0) await run('DELETE FROM cart_items WHERE id = ?', [item.id])
     else await run('UPDATE cart_items SET qty = ? WHERE id = ?', [q, item.id])

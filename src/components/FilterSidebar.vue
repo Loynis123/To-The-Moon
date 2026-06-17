@@ -40,14 +40,14 @@ function toggle(group, option) {
     <!-- Brand -->
     <section class="group">
       <button class="group-head" @click="toggleGroup('Brand')">
-        <span class="group-title">Brand</span>
+        <span class="group-title">Бренд</span>
         <span class="chev" :class="{ up: open.Brand }"></span>
       </button>
 
       <div v-show="open.Brand" class="group-body">
         <label class="brand-search">
           <img src="/icons/search.png" alt="" />
-          <input v-model="brandQuery" type="text" placeholder="Search" />
+          <input v-model="brandQuery" type="text" placeholder="Поиск" />
         </label>
 
         <ul class="opt-list">

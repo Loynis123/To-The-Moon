@@ -33,7 +33,7 @@ export function productRating(id) {
 
 // Returns { colors: [{name, hex, image}], memories: [] } for a product.
 export function getVariants(product) {
-  const name = deriveColor(product?.name) || 'Standard'
+  const name = deriveColor(product?.name) || 'Стандарт'
   return {
     colors: [{ name, hex: SWATCH[name] || '#3a4255', image: product?.image || '' }],
     memories: [],

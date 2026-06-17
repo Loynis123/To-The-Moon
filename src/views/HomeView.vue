@@ -10,9 +10,9 @@ import { fetchAllProducts } from '../catalog-api.js'
 
 // Homepage product tabs (New Arrival / Bestseller / Featured).
 const tabs = [
-  { key: 'new', label: 'New Arrival' },
-  { key: 'best', label: 'Bestseller' },
-  { key: 'featured', label: 'Featured Products' },
+  { key: 'new', label: 'Новинки' },
+  { key: 'best', label: 'Хиты продаж' },
+  { key: 'featured', label: 'Рекомендуем' },
 ]
 
 const catalog = ref([])
@@ -35,6 +35,6 @@ onMounted(async () => {
   <BrowseByCategory />
   <ProductSection id="catalog" :tabs="tabs" :catalog="catalog" filterable />
   <PromoBanners :catalog="catalog" />
-  <ProductSection heading="Discounts up to -50%" :products="discounts" />
+  <ProductSection heading="Скидки до -50%" :products="discounts" />
   <SummerSale />
 </template>

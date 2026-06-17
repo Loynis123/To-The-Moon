@@ -4,10 +4,10 @@ import { computed } from 'vue'
 const props = defineProps({ catalog: { type: Array, default: () => [] } })
 
 const FEATURED = [
-  { name: 'HyperX Cloud III', tag: 'Headset', image: '/imgs/hyperx-cloud-3.webp', desc: 'Detailed spatial audio and a lightweight frame for marathon sessions.' },
-  { name: 'Logitech G502 X', tag: 'Mouse', image: '/imgs/logitech-g502.jpg', desc: 'LIGHTFORCE switches and a 25.6K sensor — precision, your way.' },
-  { name: 'Razer Huntsman V2 TKL', tag: 'Keyboard', image: '/imgs/razer-huntsman-v2-tkl.png', desc: 'Optical switches with near-zero latency and crisp PBT keycaps.' },
-  { name: 'Xbox Wireless Controller', tag: 'Controller', image: '/imgs/xbox-controller.jpg', desc: 'Textured grips and low-latency wireless across Xbox and PC.' },
+  { name: 'HyperX Cloud III', tag: 'Наушники', image: '/imgs/hyperx-cloud-3.webp', desc: 'Детальный пространственный звук и лёгкий корпус для долгих сессий.' },
+  { name: 'Logitech G502 X', tag: 'Мышь', image: '/imgs/logitech-g502.jpg', desc: 'Переключатели LIGHTFORCE и сенсор 25.6K — точность по-вашему.' },
+  { name: 'Razer Huntsman V2 TKL', tag: 'Клавиатура', image: '/imgs/razer-huntsman-v2-tkl.png', desc: 'Оптические переключатели с минимальной задержкой и кейкапы из PBT.' },
+  { name: 'Xbox Wireless Controller', tag: 'Геймпад', image: '/imgs/xbox-controller.jpg', desc: 'Текстурные грипсы и беспроводная связь на Xbox и ПК.' },
 ]
 
 // Resolve each pick to its catalog record so the tile deep-links to the
@@ -24,8 +24,8 @@ const featured = computed(() =>
   <section class="showcase">
     <div class="container">
       <div class="head">
-        <h2 class="heading">Featured Gear</h2>
-        <router-link to="/products" class="all">View all →</router-link>
+        <h2 class="heading">Топ устройства</h2>
+        <router-link to="/products" class="all">Все товары →</router-link>
       </div>
 
       <div class="grid">

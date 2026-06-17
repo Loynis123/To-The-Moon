@@ -14,13 +14,13 @@ export const brands = [
 
 // DB columns reused with gaming meanings (see src/data/catalog.js).
 export const filterGroups = [
-  { name: 'Connectivity', prop: 'battery', options: ['Wired', 'Wireless', 'Bluetooth'] },
-  { name: 'Surround sound', prop: 'screen', options: ['Stereo', 'DTS 7.1', 'Spatial Audio', 'Dolby Atmos'] },
-  { name: 'Driver size', prop: 'diagonal', options: ['40 mm', '50 mm', '53 mm'] },
-  { name: 'Platform', prop: 'protection', options: ['PC', 'PlayStation', 'Xbox', 'Multi-platform'] },
-  { name: 'Lighting', prop: 'memory', options: ['RGB', 'Single-colour', 'None'] },
+  { name: 'Подключение', prop: 'battery', options: ['Проводное', 'Беспроводное', 'Bluetooth'] },
+  { name: 'Объёмный звук', prop: 'screen', options: ['Стерео', 'DTS 7.1', 'Пространственный звук', 'Dolby Atmos'] },
+  { name: 'Размер драйвера', prop: 'diagonal', options: ['40 мм', '50 мм', '53 мм'] },
+  { name: 'Платформа', prop: 'protection', options: ['ПК', 'PlayStation', 'Xbox', 'Мультиплатформа'] },
+  { name: 'Подсветка', prop: 'memory', options: ['RGB', 'Одноцветная', 'Нет'] },
 ]
 
-export const sortOptions = ['By rating', 'Price: low to high', 'Price: high to low', 'Newest first']
+export const sortOptions = ['По рейтингу', 'Цена: по возрастанию', 'Цена: по убыванию', 'Сначала новые']
 
-export const categories = ['Headsets', 'Mice', 'Keyboards', 'Controllers']
+export const categories = ['Наушники', 'Мыши', 'Клавиатуры', 'Геймпады']

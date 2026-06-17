@@ -67,24 +67,24 @@ watch(mobileOpen, (open) => {
         <input
           v-model="filters.search"
           type="text"
-          placeholder="Search"
+          placeholder="Поиск"
           @keyup.enter="submitSearch"
         />
-        <button v-if="filters.search" class="search-clear" aria-label="Clear search" @click="filters.search = ''">✕</button>
+        <button v-if="filters.search" class="search-clear" aria-label="Очистить поиск" @click="filters.search = ''">✕</button>
       </label>
 
       <div class="actions">
-        <router-link to="/favorites" class="icon-btn cart-link" aria-label="Wishlist">
+        <router-link to="/favorites" class="icon-btn cart-link" aria-label="Избранное">
           <img src="/icons/favorites.png" alt="" />
           <span v-if="favoritesCount" class="badge">{{ favoritesCount }}</span>
         </router-link>
-        <router-link to="/cart" class="icon-btn cart-link" aria-label="Cart">
+        <router-link to="/cart" class="icon-btn cart-link" aria-label="Корзина">
           <img src="/icons/cart.png" alt="" />
           <span v-if="cartCount" class="badge">{{ cartCount }}</span>
         </router-link>
 
         <div class="account" @click.stop>
-          <button class="icon-btn account-btn" :aria-label="isAuthed ? 'Account' : 'Sign in'" @click="onAccountClick">
+          <button class="icon-btn account-btn" :aria-label="isAuthed ? 'Аккаунт' : 'Войти'" @click="onAccountClick">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-3.6 3.6-6 8-6s8 2.4 8 6" />
@@ -93,16 +93,16 @@ watch(mobileOpen, (open) => {
           <transition name="fade">
             <div v-if="isAuthed && menuOpen" class="menu">
               <p class="menu-name">{{ auth.user?.name || auth.user?.email }}</p>
-              <router-link to="/orders" class="menu-item" @click="menuOpen = false">My Orders</router-link>
-              <router-link to="/cart" class="menu-item" @click="menuOpen = false">My Cart</router-link>
-              <button class="menu-item" @click="doLogout">Log out</button>
+              <router-link to="/orders" class="menu-item" @click="menuOpen = false">Мои заказы</router-link>
+              <router-link to="/cart" class="menu-item" @click="menuOpen = false">Моя корзина</router-link>
+              <button class="menu-item" @click="doLogout">Выйти</button>
             </div>
           </transition>
         </div>
       </div>
 
       <!-- Mobile hamburger -->
-      <button class="burger" aria-label="Menu" @click="mobileOpen = true">
+      <button class="burger" aria-label="Меню" @click="mobileOpen = true">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -117,32 +117,32 @@ watch(mobileOpen, (open) => {
               <svg class="logo-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 14.2A8.2 8.2 0 0 1 9.8 3 7.2 7.2 0 1 0 21 14.2Z" fill="var(--accent)" /></svg>
               <span class="logo-text">TO&nbsp;THE&nbsp;<span>MOON</span></span>
             </router-link>
-            <button class="drawer-close" aria-label="Close menu" @click="closeMobile">✕</button>
+            <button class="drawer-close" aria-label="Закрыть меню" @click="closeMobile">✕</button>
           </div>
 
           <label class="drawer-search">
             <img class="search-icon" src="/icons/search.png" alt="" />
-            <input v-model="filters.search" type="text" placeholder="Search" @keyup.enter="submitSearch" />
+            <input v-model="filters.search" type="text" placeholder="Поиск" @keyup.enter="submitSearch" />
           </label>
 
           <nav class="drawer-nav">
-            <router-link to="/" @click="closeMobile">Home</router-link>
-            <router-link to="/products" @click="closeMobile">Catalog</router-link>
+            <router-link to="/" @click="closeMobile">Главная</router-link>
+            <router-link to="/products" @click="closeMobile">Каталог</router-link>
             <router-link to="/favorites" @click="closeMobile">
-              Favorites <span v-if="favoritesCount" class="pill">{{ favoritesCount }}</span>
+              Избранное <span v-if="favoritesCount" class="pill">{{ favoritesCount }}</span>
             </router-link>
             <router-link to="/cart" @click="closeMobile">
-              Cart <span v-if="cartCount" class="pill">{{ cartCount }}</span>
+              Корзина <span v-if="cartCount" class="pill">{{ cartCount }}</span>
             </router-link>
-            <router-link v-if="isAuthed" to="/orders" @click="closeMobile">My Orders</router-link>
+            <router-link v-if="isAuthed" to="/orders" @click="closeMobile">Мои заказы</router-link>
           </nav>
 
           <div class="drawer-account">
             <template v-if="isAuthed">
               <p class="drawer-user">{{ auth.user?.name || auth.user?.email }}</p>
-              <button class="btn-outline drawer-btn" @click="doLogout">Log out</button>
+              <button class="btn-outline drawer-btn" @click="doLogout">Выйти</button>
             </template>
-            <button v-else class="btn-solid drawer-btn" @click="mobileSignIn">Sign in</button>
+            <button v-else class="btn-solid drawer-btn" @click="mobileSignIn">Войти</button>
           </div>
         </aside>
       </div>

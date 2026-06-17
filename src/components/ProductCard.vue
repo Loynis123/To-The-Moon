@@ -33,7 +33,7 @@ function addToCart() {
 
 <template>
   <article class="card">
-    <button class="like" :class="{ on: liked }" @click="toggleLike" aria-label="Add to wishlist">
+    <button class="like" :class="{ on: liked }" @click="toggleLike" aria-label="В избранное">
       <TheIcon :name="liked ? 'heartFilled' : 'heart'" :size="20" />
     </button>
 
@@ -45,7 +45,7 @@ function addToCart() {
     <p class="rating"><span class="star">★</span> {{ rating.rating }} <span class="count">({{ rating.reviewCount }})</span></p>
     <p class="price">{{ typeof price === 'number' ? '$' + price : price }}</p>
     <button class="btn-solid buy" :class="{ added }" @click="addToCart">
-      {{ added ? 'Added ✓' : 'Buy Now' }}
+      {{ added ? 'Добавлено ✓' : 'Купить' }}
     </button>
   </article>
 </template>

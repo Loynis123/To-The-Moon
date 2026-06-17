@@ -41,7 +41,7 @@ async function request(method, path, body) {
   }
 
   if (!res.ok) {
-    const message = (data && data.error) || res.statusText || 'Request failed'
+    const message = (data && data.error) || res.statusText || 'Ошибка запроса'
     throw new ApiError(message, res.status)
   }
   return data

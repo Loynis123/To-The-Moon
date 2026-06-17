@@ -16,11 +16,22 @@ function formatDate(s) {
   // SQLite stores UTC "YYYY-MM-DD HH:MM:SS"; render it in a friendly local form.
   const d = new Date(s.replace(' ', 'T') + 'Z')
   if (Number.isNaN(d.getTime())) return s
-  return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+  return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 function variantLabel(item) {
   return [item.color, item.memory].filter(Boolean).join(' · ')
+}
+
+const STATUS_LABELS = {
+  placed: 'Оформлен',
+  paid: 'Оплачен',
+  shipped: 'Отправлен',
+  completed: 'Выполнен',
+  cancelled: 'Отменён',
+}
+function statusLabel(s) {
+  return STATUS_LABELS[s] || s
 }
 
 async function load() {
@@ -33,7 +44,7 @@ async function load() {
   try {
     orders.value = await fetchOrders()
   } catch (err) {
-    error.value = err.message || 'Failed to load orders'
+    error.value = err.message || 'Не удалось загрузить заказы'
   } finally {
     loading.value = false
   }
@@ -46,21 +57,21 @@ watch(isAuthed, load)
 <template>
   <div class="orders-page">
     <div class="container">
-      <h1 class="page-title">My Orders</h1>
+      <h1 class="page-title">Мои заказы</h1>
 
       <!-- not signed in -->
       <div v-if="!isAuthed" class="state">
-        <p>Please sign in to view your orders.</p>
-        <button class="btn-solid" @click="openAuth">Sign in</button>
+        <p>Войдите, чтобы посмотреть свои заказы.</p>
+        <button class="btn-solid" @click="openAuth">Войти</button>
       </div>
 
-      <p v-else-if="loading" class="state muted">Loading…</p>
+      <p v-else-if="loading" class="state muted">Загрузка…</p>
       <p v-else-if="error" class="state error">{{ error }}</p>
 
       <!-- empty -->
       <div v-else-if="!orders.length" class="state">
-        <p class="muted">You haven't placed any orders yet.</p>
-        <router-link to="/products" class="btn-solid">Browse products</router-link>
+        <p class="muted">У вас пока нет заказов.</p>
+        <router-link to="/products" class="btn-solid">Перейти в каталог</router-link>
       </div>
 
       <!-- list -->
@@ -68,11 +79,11 @@ watch(isAuthed, load)
         <li v-for="o in orders" :key="o.id" class="order">
           <header class="order-head">
             <div class="order-meta">
-              <span class="order-id">Order #{{ o.id }}</span>
+              <span class="order-id">Заказ №{{ o.id }}</span>
               <span class="order-date">{{ formatDate(o.created_at) }}</span>
             </div>
             <div class="order-right">
-              <span class="status" :class="o.status">{{ o.status }}</span>
+              <span class="status" :class="o.status">{{ statusLabel(o.status) }}</span>
               <span class="order-total">{{ money(o.total) }}</span>
             </div>
           </header>
@@ -92,10 +103,10 @@ watch(isAuthed, load)
           </ul>
 
           <dl class="order-totals">
-            <div><dt>Subtotal</dt><dd>{{ money(o.subtotal) }}</dd></div>
-            <div><dt>Tax</dt><dd>{{ money(o.tax) }}</dd></div>
-            <div><dt>Shipping &amp; Handling</dt><dd>{{ money(o.shipping) }}</dd></div>
-            <div class="grand"><dt>Total</dt><dd>{{ money(o.total) }}</dd></div>
+            <div><dt>Сумма</dt><dd>{{ money(o.subtotal) }}</dd></div>
+            <div><dt>Налог</dt><dd>{{ money(o.tax) }}</dd></div>
+            <div><dt>Доставка и обработка</dt><dd>{{ money(o.shipping) }}</dd></div>
+            <div class="grand"><dt>Итого</dt><dd>{{ money(o.total) }}</dd></div>
           </dl>
         </li>
       </ul>

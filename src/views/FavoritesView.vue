@@ -33,11 +33,11 @@ function checkout() {
 <template>
   <div class="fav-page">
     <div class="fav-col">
-      <h1 class="title">Favorite</h1>
+      <h1 class="title">Избранное</h1>
       <div class="title-rule"></div>
 
       <p v-if="!favorites.items.length" class="empty">
-        No favorites yet. <router-link to="/products">Browse products →</router-link>
+        Пока ничего нет. <router-link to="/products">Перейти в каталог →</router-link>
       </p>
 
       <ul class="list">
@@ -51,7 +51,7 @@ function checkout() {
             <p class="row-article">{{ item.article }}</p>
           </div>
 
-          <button class="row-remove" aria-label="Remove from favorites" @click="favorites.remove(item.key)">
+          <button class="row-remove" aria-label="Удалить из избранного" @click="favorites.remove(item.key)">
             ✕
           </button>
         </li>
@@ -59,25 +59,25 @@ function checkout() {
 
       <!-- Order summary (mobile mockup) -->
       <aside v-if="favorites.items.length" class="fav-summary">
-        <h2 class="summary-title">Order Summary</h2>
+        <h2 class="summary-title">Итог заказа</h2>
 
-        <label class="field-label">Discount code / Promo code</label>
-        <input v-model="promo" class="field" type="text" placeholder="Code" />
+        <label class="field-label">Скидочный / промокод</label>
+        <input v-model="promo" class="field" type="text" placeholder="Код" />
 
-        <label class="field-label">Your bonus card number</label>
+        <label class="field-label">Номер бонусной карты</label>
         <div class="bonus">
-          <input v-model="bonusCard" class="field" type="text" placeholder="Enter Card Number" />
-          <button class="apply" @click="applyBonus">Apply</button>
+          <input v-model="bonusCard" class="field" type="text" placeholder="Введите номер карты" />
+          <button class="apply" @click="applyBonus">Применить</button>
         </div>
 
         <dl class="totals">
-          <div class="total-row"><dt>Subtotal</dt><dd>{{ money(subtotal) }}</dd></div>
-          <div class="total-row muted"><dt>Estimated Tax</dt><dd>{{ money(ESTIMATED_TAX) }}</dd></div>
-          <div class="total-row muted"><dt>Estimated shipping &amp; Handling</dt><dd>{{ money(ESTIMATED_SHIPPING) }}</dd></div>
-          <div class="total-row grand"><dt>Total</dt><dd>{{ money(total) }}</dd></div>
+          <div class="total-row"><dt>Сумма</dt><dd>{{ money(subtotal) }}</dd></div>
+          <div class="total-row muted"><dt>Налог (оценка)</dt><dd>{{ money(ESTIMATED_TAX) }}</dd></div>
+          <div class="total-row muted"><dt>Доставка и обработка (оценка)</dt><dd>{{ money(ESTIMATED_SHIPPING) }}</dd></div>
+          <div class="total-row grand"><dt>Итого</dt><dd>{{ money(total) }}</dd></div>
         </dl>
 
-        <button class="checkout" @click="checkout">Checkout</button>
+        <button class="checkout" @click="checkout">Оформить заказ</button>
       </aside>
     </div>
   </div>

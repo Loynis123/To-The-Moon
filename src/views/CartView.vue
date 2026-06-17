@@ -45,7 +45,7 @@ async function checkout() {
     placedOrder.value = order
     router.push('/orders')
   } catch (err) {
-    checkoutError.value = err.message || 'Checkout failed'
+    checkoutError.value = err.message || 'Не удалось оформить заказ'
   } finally {
     placing.value = false
   }
@@ -55,13 +55,13 @@ async function checkout() {
 <template>
   <div class="cart-page">
     <div class="container">
-      <h1 class="page-title">Shopping Cart</h1>
+      <h1 class="page-title">Корзина</h1>
 
       <div class="layout">
         <!-- items -->
         <section class="items">
           <p v-if="!cart.items.length" class="empty">
-            Your cart is empty. <router-link to="/products">Browse products →</router-link>
+            Ваша корзина пуста. <router-link to="/products">Перейти в каталог →</router-link>
           </p>
 
           <div v-for="item in cart.items" :key="item.key" class="item">
@@ -75,55 +75,55 @@ async function checkout() {
             </div>
 
             <div class="stepper">
-              <button aria-label="Decrease" @click="cart.decrement(item.key)">−</button>
+              <button aria-label="Уменьшить" @click="cart.decrement(item.key)">−</button>
               <span class="qty">{{ item.qty }}</span>
-              <button aria-label="Increase" @click="cart.increment(item.key)">+</button>
+              <button aria-label="Увеличить" @click="cart.increment(item.key)">+</button>
             </div>
 
             <div class="item-price">{{ money(item.price * item.qty) }}</div>
 
-            <button class="item-remove" aria-label="Remove" @click="cart.remove(item.key)">✕</button>
+            <button class="item-remove" aria-label="Удалить" @click="cart.remove(item.key)">✕</button>
           </div>
         </section>
 
         <!-- order summary -->
         <aside class="summary">
-          <h2 class="summary-title">Order Summary</h2>
+          <h2 class="summary-title">Итог заказа</h2>
 
-          <label class="field-label">Discount code / Promo code</label>
-          <input v-model="promo" class="field" type="text" placeholder="Code" />
+          <label class="field-label">Скидочный / промокод</label>
+          <input v-model="promo" class="field" type="text" placeholder="Код" />
 
-          <label class="field-label">Your bonus card number</label>
+          <label class="field-label">Номер бонусной карты</label>
           <div class="bonus">
-            <input v-model="bonusCard" class="field" type="text" placeholder="Enter Card Number" />
-            <button class="apply" @click="applyBonus">Apply</button>
+            <input v-model="bonusCard" class="field" type="text" placeholder="Введите номер карты" />
+            <button class="apply" @click="applyBonus">Применить</button>
           </div>
 
           <dl class="totals">
             <div class="total-row">
-              <dt>Subtotal</dt>
+              <dt>Сумма</dt>
               <dd>{{ money(subtotal) }}</dd>
             </div>
             <div class="total-row muted">
-              <dt>Estimated Tax</dt>
+              <dt>Налог (оценка)</dt>
               <dd>{{ money(cart.items.length ? ESTIMATED_TAX : 0) }}</dd>
             </div>
             <div class="total-row muted">
-              <dt>Estimated shipping &amp; Handling</dt>
+              <dt>Доставка и обработка (оценка)</dt>
               <dd>{{ money(cart.items.length ? ESTIMATED_SHIPPING : 0) }}</dd>
             </div>
             <div class="total-row grand">
-              <dt>Total</dt>
+              <dt>Итого</dt>
               <dd>{{ money(total) }}</dd>
             </div>
           </dl>
 
           <button class="checkout" :disabled="!cart.items.length || placing" @click="checkout">
-            {{ placing ? 'Placing…' : isAuthed ? 'Checkout' : 'Sign in to checkout' }}
+            {{ placing ? 'Оформление…' : isAuthed ? 'Оформить заказ' : 'Войдите для оформления' }}
           </button>
           <p v-if="checkoutError" class="checkout-msg error">{{ checkoutError }}</p>
           <p v-if="placedOrder" class="checkout-msg ok">
-            Order #{{ placedOrder.id }} placed — total {{ money(placedOrder.total) }}. Thank you!
+            Заказ №{{ placedOrder.id }} оформлен — на сумму {{ money(placedOrder.total) }}. Спасибо!
           </p>
         </aside>
       </div>

@@ -14,11 +14,11 @@ function publicUser(u) {
 router.post('/register', async (req, res, next) => {
   try {
     const { email, password, name } = req.body || {}
-    if (!email || !EMAIL_RE.test(email)) return res.status(400).json({ error: 'Valid email required' })
-    if (!password || String(password).length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' })
+    if (!email || !EMAIL_RE.test(email)) return res.status(400).json({ error: 'Укажите корректный email' })
+    if (!password || String(password).length < 6) return res.status(400).json({ error: 'Пароль должен быть не короче 6 символов' })
 
     const existing = await get('SELECT id FROM users WHERE email = ?', [email.toLowerCase()])
-    if (existing) return res.status(409).json({ error: 'Email already registered' })
+    if (existing) return res.status(409).json({ error: 'Этот email уже зарегистрирован' })
 
     const hash = bcrypt.hashSync(String(password), 10)
     const info = await run('INSERT INTO users (email, password_hash, name) VALUES (?, ?, ?)', [
@@ -35,11 +35,11 @@ router.post('/register', async (req, res, next) => {
 router.post('/login', async (req, res, next) => {
   try {
     const { email, password } = req.body || {}
-    if (!email || !password) return res.status(400).json({ error: 'Email and password required' })
+    if (!email || !password) return res.status(400).json({ error: 'Укажите email и пароль' })
 
     const user = await get('SELECT * FROM users WHERE email = ?', [String(email).toLowerCase()])
     if (!user || !bcrypt.compareSync(String(password), user.password_hash)) {
-      return res.status(401).json({ error: 'Invalid email or password' })
+      return res.status(401).json({ error: 'Неверный email или пароль' })
     }
     res.json({ token: signToken(user), user: publicUser(user) })
   } catch (err) {
@@ -50,7 +50,7 @@ router.post('/login', async (req, res, next) => {
 router.get('/me', requireAuth, async (req, res, next) => {
   try {
     const user = await get('SELECT * FROM users WHERE id = ?', [req.user.id])
-    if (!user) return res.status(404).json({ error: 'User not found' })
+    if (!user) return res.status(404).json({ error: 'Пользователь не найден' })
     res.json({ user: publicUser(user) })
   } catch (err) {
     next(err)

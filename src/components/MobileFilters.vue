@@ -74,24 +74,24 @@ const fillStyle = computed(() => {
 <template>
   <div class="filters-page">
     <button class="back" @click="emit('close')">
-      <span class="back-arrow"></span> Filters
+      <span class="back-arrow"></span> Фильтры
     </button>
 
     <!-- Price -->
     <section class="group">
       <button class="group-head" @click="toggleGroup('Price')">
-        <span class="group-title">Price</span>
+        <span class="group-title">Цена</span>
         <span class="chev" :class="{ up: open.Price }"></span>
       </button>
       <div v-show="open.Price" class="group-body">
         <div class="price-fields">
           <label class="price-field">
-            <span>From</span>
+            <span>От</span>
             <input type="number" :value="price.min" @change="setMin($event.target.value)" />
           </label>
           <span class="price-sep"></span>
           <label class="price-field">
-            <span>To</span>
+            <span>До</span>
             <input type="number" :value="price.max" @change="setMax($event.target.value)" />
           </label>
         </div>
@@ -121,13 +121,13 @@ const fillStyle = computed(() => {
     <!-- Brand -->
     <section class="group">
       <button class="group-head" @click="toggleGroup('Brand')">
-        <span class="group-title">Brand</span>
+        <span class="group-title">Бренд</span>
         <span class="chev" :class="{ up: open.Brand }"></span>
       </button>
       <div v-show="open.Brand" class="group-body">
         <label class="opt-search">
           <img src="/icons/search.png" alt="" />
-          <input v-model="brandQuery" type="text" placeholder="Search" />
+          <input v-model="brandQuery" type="text" placeholder="Поиск" />
         </label>
         <ul class="opt-list scroll">
           <li v-for="b in filteredBrands" :key="b.name">
@@ -151,7 +151,7 @@ const fillStyle = computed(() => {
       <div v-show="open[g.name]" class="group-body">
         <label v-if="hasSearch(g.name)" class="opt-search">
           <img src="/icons/search.png" alt="" />
-          <input v-model="queries[g.name]" type="text" placeholder="Search" />
+          <input v-model="queries[g.name]" type="text" placeholder="Поиск" />
         </label>
         <ul class="opt-list" :class="{ scroll: hasSearch(g.name) }">
           <li v-for="o in filteredOptions(g)" :key="o">
@@ -165,7 +165,7 @@ const fillStyle = computed(() => {
       </div>
     </section>
 
-    <button class="apply btn-solid" @click="emit('apply')">Apply</button>
+    <button class="apply btn-solid" @click="emit('apply')">Применить</button>
   </div>
 </template>
 
