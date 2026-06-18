@@ -19,6 +19,8 @@
   --chip: #1d2130;
   --panel: #14161f;
   --panel-2: #1d2130;
+  --surface: #14161f; /* raised panels: header, footer, modal, menus */
+  --surface-2: #1d2130; /* hover/active fills */
   --dark-cell: #0f1117;
   --dark: #0f1117;
 
