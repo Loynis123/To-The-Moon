@@ -8,11 +8,11 @@ import OrdersView from './views/OrdersView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
-  { path: '/products', name: 'products', component: ProductsView },
+  { path: '/products', name: 'products', component: ProductsView, meta: { title: 'Каталог' } },
   { path: '/product/:id?', name: 'product', component: ProductDetailsView },
-  { path: '/cart', name: 'cart', component: CartView },
-  { path: '/favorites', name: 'favorites', component: FavoritesView },
-  { path: '/orders', name: 'orders', component: OrdersView },
+  { path: '/cart', name: 'cart', component: CartView, meta: { title: 'Корзина' } },
+  { path: '/favorites', name: 'favorites', component: FavoritesView, meta: { title: 'Избранное' } },
+  { path: '/orders', name: 'orders', component: OrdersView, meta: { title: 'Мои заказы' } },
 ]
 
 export const router = createRouter({
@@ -21,4 +21,11 @@ export const router = createRouter({
   scrollBehavior() {
     return { top: 0 }
   },
+})
+
+const BASE_TITLE = 'To The Moon — игровые гарнитуры и девайсы'
+// The product page sets its own title once the product name is known.
+router.afterEach((to) => {
+  if (to.name === 'product') return
+  document.title = to.meta.title ? `${to.meta.title} — To The Moon` : BASE_TITLE
 })

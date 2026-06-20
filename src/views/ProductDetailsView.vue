@@ -64,6 +64,7 @@ async function load() {
   const match = colors.value.findIndex((c) => c.image === product.value.image)
   activeColor.value = match >= 0 ? match : 0
   activeMemory.value = 0
+  document.title = `${product.value.name} — To The Moon`
 }
 watch(() => route.params.id, load, { immediate: true })
 
@@ -76,12 +77,13 @@ const related = computed(() => {
 
 // Spec chips are built from the product's real fields (empty ones are skipped),
 // so every product shows its own characteristics instead of a fixed sheet.
+// Inline gaming-themed icons (Lucide-style) — no icon assets, stroke = currentColor.
 const SPEC_DEFS = [
-  { key: 'battery', label: 'Подключение', icon: '/icons/spec-battery.png' },
-  { key: 'screen', label: 'Объёмный звук', icon: '/icons/spec-cpu.png' },
-  { key: 'diagonal', label: 'Размер драйвера', icon: '/icons/spec-cores.png' },
-  { key: 'protection', label: 'Платформа', icon: '/icons/info-guarantee.png' },
-  { key: 'memory', label: 'Подсветка', icon: '/icons/spec-screen.png' },
+  { key: 'battery', label: 'Подключение', icon: '<path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/>' },
+  { key: 'screen', label: 'Объёмный звук', icon: '<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>' },
+  { key: 'diagonal', label: 'Размер драйвера', icon: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>' },
+  { key: 'protection', label: 'Платформа', icon: '<line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><rect width="20" height="12" x="2" y="6" rx="6"/>' },
+  { key: 'memory', label: 'Подсветка', icon: '<path d="M9 18h6"/><path d="M10 22h4"/><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>' },
 ]
 const specs = computed(() =>
   SPEC_DEFS.filter((d) => product.value[d.key]).map((d) => ({
@@ -224,7 +226,7 @@ function addToCart() {
 
           <ul class="specs">
             <li v-for="s in specs" :key="s.label" class="spec">
-              <img class="spec-icon" :src="s.icon" alt="" />
+              <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" v-html="s.icon" />
               <div class="spec-text">
                 <span class="spec-label">{{ s.label }}</span>
                 <span class="spec-value">{{ s.value }}</span>
@@ -481,10 +483,10 @@ function addToCart() {
   padding: 14px;
 }
 .spec-icon {
-  filter: invert(1);
-  width: 26px;
-  height: 26px;
-  opacity: 0.55;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--accent);
 }
 .spec-text {
   display: flex;

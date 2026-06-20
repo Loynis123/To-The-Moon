@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { fetchOrders } from '../orders-api.js'
 import { isAuthed, openAuth } from '../user.js'
 
+const route = useRoute()
+const placedId = ref(route.query.placed || null)
 const orders = ref([])
 const loading = ref(false)
 const error = ref('')
@@ -58,6 +61,11 @@ watch(isAuthed, load)
   <div class="orders-page">
     <div class="container">
       <h1 class="page-title">Мои заказы</h1>
+
+      <div v-if="placedId" class="placed-banner">
+        <span>✓ Заказ №{{ placedId }} оформлен. Спасибо за покупку!</span>
+        <button class="pb-close" aria-label="Закрыть" @click="placedId = null">✕</button>
+      </div>
 
       <!-- not signed in -->
       <div v-if="!isAuthed" class="state">
@@ -123,6 +131,29 @@ watch(isAuthed, load)
   font-weight: 500;
   color: var(--ink);
   margin-bottom: 32px;
+}
+.placed-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: -12px 0 28px;
+  padding: 14px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: rgba(194, 255, 71, 0.1);
+  color: var(--ink);
+  font-size: 15px;
+}
+.placed-banner .pb-close {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 4px;
+  transition: color 0.15s ease;
+}
+.placed-banner .pb-close:hover {
+  color: var(--ink);
 }
 
 .state {

@@ -40,7 +40,7 @@ async function checkout() {
     const order = await api.post('/orders')
     await cart.clear()
     placedOrder.value = order
-    router.push('/orders')
+    router.push({ path: '/orders', query: { placed: order.id } })
   } catch (err) {
     checkoutError.value = err.message || 'Не удалось оформить заказ'
   } finally {
